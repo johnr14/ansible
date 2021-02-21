@@ -292,3 +292,321 @@ remove_packages:
   - libsss_idmap 
   - libsss_nss_idmap 
   - sssd-client
+  
+  
+## NOTES FOR PACKAGES :
+##
+## 1. We are using os_family as grouping as package names should not have any difference. You may add a distribution also and it will parse it (like Ubuntu).
+## 2. If a package require particular configuration, better install it thru it's own role.
+## 3. These are my general use packages, currently tested on Fedora.
+## 4. Inspired from https://github.com/crivetimihai/ansible_workstation/blob/master/roles/packages/vars/main.yml
+
+      #- htop
+      #- mc
+      #- tmux
+      #- tuptime
+      #- kaccounts-providers
+      #- ktp-accounts-kcm
+      #- yakuake
+
+
+## Prereq packages: they get installed first, so put things like epel-release here
+#_packages_prereq:
+  #all:
+    #- {{ default([]) }}
+  #Debian:
+    #- {{ default([]) }}
+  #FreeBSD:
+    #- {{ default([]) }}  
+  #RedHat:
+    #- dnf-plugin-system-upgrade
+    #- dnf-utils
+    #- dnf-automatic
+    #- dnf-plugins-core
+    #- toolbox
+  #Suse:
+    #- {{ default([]) }}   
+
+#_admin_packages: 
+  #all:
+    #- sudo
+
+#_codec_packages:
+  #all:
+    #- gstreamer1-libav
+    #- gstreamer1-vaapi
+    #- gstreamer-ffmpeg
+    #- gstreamer1-plugins-bad-free
+    #- gstreamer1-plugins-bad-free-extras
+    #- gstreamer1-plugins-bad-freeworld
+    #- gstreamer1-plugins-good
+    #- gstreamer1-plugins-good-extras
+    #- gstreamer1-plugins-ugly
+    #- libaacs    
+    
+#_compression_packages:
+  #all:
+    #- bzip2
+    #- dar
+    #- p7zip
+    #- p7zip-plugins
+    #- unzip
+    #- xz
+    #- zstd
+
+#_dev_packages:
+  #all:
+    #- bc
+    #- binutils
+    #- bison
+    #- dialog
+    #- elfutils-libelf-devel
+    #- flex
+    #- gcc
+    #- go
+    #- kernel-devel
+    #- kernel-headers
+    #- kexec-tools
+    #- make
+    #- ncurses-devel
+    #- ncurses-libs
+    #- openssl-devel
+    #- perl
+    #- rust
+
+  #RedHat:
+    #- rpm-build
+    #- rpmdevtools  
+  #Suse:
+    #- rpm-build
+    #- rpmdevtools    
+  
+#_docker_packages:
+  #all:
+    #- docker
+    #- docker-client
+    #- docker-client-latest
+    #- docker-common
+    #- docker-engine
+    #- docker-engine-selinux
+    #- docker-latest
+    #- docker-latest-logrotate
+    #- docker-logrotate
+    #- docker-selinux
+
+#_editor_packages:
+  #all:
+    #- vim
+    #- vim-enhanced 
+
+#_filesystem_packages:
+  #all:
+    #- autofs
+    #- btrfs-progs
+    #- exfat-utils
+    #- fuse
+    #- fuse-exfat  
+    #- ntfs-3g
+    #- ntfs-3g-system-compression
+    #- ntfsprogs
+
+#_fonts_packages:
+  #all:
+    #- adobe-source-code-pro-fonts
+    #- dejavu-sans-fonts
+    #- dejavu-sans-mono-fonts
+    #- dejavu-serif-fonts
+    #- gnu-free-fonts-common
+    #- gnu-free-mono-fonts
+    #- gnu-free-sans-fonts
+    #- gnu-free-serif-fonts
+    #- levien-inconsolata-fonts
+    #- liberation-fonts-common
+    #- liberation-mono-fonts
+    #- liberation-sans-fonts
+    #- liberation-serif-fonts
+    #- mozilla-fira-mono-fonts
+    #- msimonson-anonymouspro-fonts
+    #- overpass-fonts
+    #- powerline-fonts
+    #- terminus-fonts
+    #- wine-fonts
+
+#_gui_packages:
+  #all:
+    #- ffmpegthumbnailer
+    #- kaccounts-providers
+    #- kate
+    #- ktp-accounts-kcm
+    #- yakuake
+  ##- keepassxc
+
+#_integrity_packages:
+  #all:
+    #- {{ default([]) }}   
+
+#_language_packages:
+  #all:
+    #- aspell-en
+    #- hunspell-en
+    #- hunspell-en-US
+
+#_management_packages:
+  #all:
+    #- chrony
+    #- policycoreutils-gui
+    #- firewall-config
+    #- setools-console
+  
+#_monitoring_packages:
+  #all:
+    #- logwatch
+    #- fail2ban
+    #- collectd
+    #- lm_sensors-sensord
+
+#_multimedia_packages:
+  #all:
+    #- audacity
+    #- clementine
+    #- darktable
+    #- digicam
+    #- ffmpeg
+    #- gimp
+    #- handbrake
+    #- inkscape
+    #- kdenlive
+    #- kodi
+    #- obs
+    #- openshot
+    #- soundconverter
+    #- vlc
+    #- vlc-extras
+    #- xnconvert
+    #- youtube-dl
+  
+#_network_client_packages:
+  #all:
+    #- cifs-utils
+    #- nfs-utils
+    #- openldap-clients
+    #- openssh-clients
+    #- samba-client
+    
+#_networking_packages:
+  #all:
+    #- aria2
+    #- curl
+    #- dig
+    #- net-tools
+    #- rsync
+    #- traceroute
+    #- wget
+    #- whois
+
+#_office_packages:
+  #all:
+    #- Okular
+    #- Tellico
+    #- "@libreoffice"
+    #- libreoffice-langpack-en
+    #- libreoffice-langpack-fr
+    #- libreoffice-ogltrans
+    #- libreoffice-opensymbol-fonts
+    #- libreoffice-pdfimport
+    #- libreoffice-ure
+    #- libreoffice-xsltfilter
+  
+#_remote-client_packages:
+  #all:
+    #- kdenetwork-krdc
+    #- tigervnc
+
+#_security_packages:
+  #all: 
+    #- chkrootkit
+    #- inotify-tools
+    #- rkhunter
+  
+#_sysutil_packages:
+  #all:
+    #- acpi
+    #- dmidecode
+    #- hddtemp
+    #- htop
+    #- iotop
+    #- gparted
+    #- lm_sensors
+    #- lshw
+    #- lsof
+    #- mbuffer
+    #- powertop
+    #- pv
+    #- smartmontools
+    #- sysstat
+    #- tree
+    #- which
+   
+#_utility_packages:
+  #all:
+    #- bash
+    #- bash-completion
+    #- bc
+    #- git
+    #- git-extra
+    #- mlocate
+    #- neofetch
+    #- screen
+    #- tmux
+    #- xclip
+  #Debian:
+    #- dfc
+
+
+#_web_packages:
+  #all:
+    ##- brave
+    #- firefox
+    #- chromium
+    #- chromium-vaapi
+  ##  - chromium-libs-media-freeworld
+
+#_toremove_packages:
+  #all:
+    #- abrt
+    #- gnome-abrt
+    #- ntp
+    #- system-config-date
+    #- system-config-firewall
+    #- system-config-firewall-base
+    #- system-config-firewall-tui
+    #- system-config-keyboard
+    #- system-config-language
+    #- system-config-services
+    #- system-config-users
+  
+## Combining the required packages
+  
+#admin_packages: "{{ _admin_packages['all'] + ( _admin_packages[os_family] | default([]) ) + ( _admin_packages[distribution] | default([]) ) }}"
+#compression_packages: "{{ _compression_packages['all'] + ( _compression_packages[os_family] | default([]) ) + ( _compression_packages[distribution] | default([]) ) }}"
+#dev_packages: "{{ _dev_packages['all'] + ( _dev_packages[os_family] | default([]) ) + ( _dev_packages[distribution] | default([]) ) }}"
+#docker_packages: "{{ _docker_packages['all'] + ( _docker_packages[os_family] | default([]) ) + ( _docker_packages[distribution] | default([]) ) }}"
+#editor_packages: "{{ _editor_packages['all'] + ( _editor_packages[os_family] | default([]) ) + ( _editor_packages[distribution] | default([]) ) }}"
+#filesystem_packages: "{{ _filesystem_packages['all'] + ( _filesystem_packages[os_family] | default([]) ) + ( _filesystem_packages[distribution] | default([]) ) }}"
+#fonts_packages: "{{ _fonts_packages['all'] + ( _fonts_packages[os_family] | default([]) ) + ( _fonts_packages[distribution] | default([]) ) }}"
+#gui_packages: "{{ _gui_packages['all'] + ( _gui_packages[os_family] | default([]) ) + ( _gui_packages[distribution] | default([]) ) }}"
+#integrity_packages: "{{ _integrity_packages['all'] + ( _integrity_packages[os_family] | default([]) ) + ( _integrity_packages[distribution] | default([]) ) }}"
+#language_packages: "{{ _language_packages['all'] + ( _language_packages[os_family] | default([]) ) + ( _language_packages[distribution] | default([]) ) }}"
+#management_packages: "{{ _management_packages['all'] + ( _management_packages[os_family] | default([]) ) + ( _management_packages[distribution] | default([]) ) }}"
+#monitoring_packages: "{{ _monitoring_packages['all'] + ( _monitoring_packages[os_family] | default([]) ) + ( _monitoring_packages[distribution] | default([]) ) }}"
+#multimedia_packages: "{{ _multimedia_packages['all'] + ( _multimedia_packages[os_family] | default([]) ) + ( _multimedia_packages[distribution] | default([]) ) }}"
+#networking_packages: "{{ _networking_packages['all'] + ( _networking_packages[os_family] | default([]) ) + ( _networking_packages[distribution] | default([]) ) }}"
+#office_packages: "{{ _office_packages['all'] + ( _office_packages[os_family] | default([]) ) + ( _office_packages[distribution] | default([]) ) }}"
+#prereq_packages: "{{ _prereq_packages['all'] + ( _prereq_packages[os_family] | default([]) ) + ( _prereq_packages[distribution] | default([]) ) }}"
+#remote-client_packages: "{{ _remote-client_packages['all'] + ( _remote-client_packages[os_family] | default([]) ) + ( _remote-client_packages[distribution] | default([]) ) }}"
+#security_packages: "{{ _security_packages['all'] + ( _security_packages[os_family] | default([]) ) + ( _security_packages[distribution] | default([]) ) }}"
+#sysutil_packages: "{{ _sysutil_packages['all'] + ( _sysutil_packages[os_family] | default([]) ) + ( _sysutil_packages[distribution] | default([]) ) }}"
+#toremove_packages: "{{ _toremove_packages['all'] + ( _toremove_packages[os_family] | default([]) ) + ( _toremove_packages[distribution] | default([]) ) }}"
+#utility_packages: "{{ _utility_packages['all'] + ( _utility_packages[os_family] | default([]) ) + ( _utility_packages[distribution] | default([]) ) }}"
+  
+
