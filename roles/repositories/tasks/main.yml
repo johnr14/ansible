@@ -1,0 +1,17 @@
+###############################################################################
+#
+# Install additionnal repositories
+# roles/repositories/tasks/main.yml
+#
+###############################################################################
+
+---
+
+- name: Install rpmfusion repositories for Fedora
+  include: rpmfusion.yml
+  when:
+    - ansible_distribution in [ "Amazon", "Fedora", "CentOS", "RedHat" ]
+  tags:
+    - repositories
+    - always
+    - rpmfusion

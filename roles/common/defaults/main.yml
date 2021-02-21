@@ -1,0 +1,13 @@
+###############################################################################
+#
+# Defaults vars
+# roles/common/defaults/main.yml
+#
+# 21-2-18 Initial version v0.1
+#
+###############################################################################
+
+---
+# Parameters
+defaults_param_task_retries: 3
+defaults_param_task_delay: 5

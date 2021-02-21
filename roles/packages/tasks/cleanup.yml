@@ -1,0 +1,11 @@
+---
+#- name: remove additional packages
+  #dnf:
+    #name: "{{ item }}"
+    #state: absent
+  #with_items:
+    #- unzip
+    #- tar
+    #- git
+  #when: 
+    

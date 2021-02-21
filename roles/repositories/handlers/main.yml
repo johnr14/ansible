@@ -1,0 +1,10 @@
+###############################################################################
+#
+# Handlers
+# roles/repositories/handlers/main.yml
+#
+###############################################################################
+---
+- name: dnf update cache
+  ansible.builtin.dnf:
+    update_cache: yes

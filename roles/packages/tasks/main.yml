@@ -1,0 +1,16 @@
+###############################################################################
+#
+# Install packages per group
+# roles/packages/tasks/main.yml
+#
+###############################################################################
+
+---
+
+- name: Install common base packages
+  include: install_base.yml
+  tags:
+    - install_base
+    - packages_install
+    - first_run
+    - always

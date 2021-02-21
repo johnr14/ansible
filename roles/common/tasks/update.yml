@@ -1,0 +1,114 @@
+###############################################################################
+#
+# Common role
+# roles/common/tasks/update.yml
+#
+# 21-2-18 Initial version v0.1
+#
+# TODO: Handlers to parse output of upgraded and check for libc/kernel change and reboot
+#
+###############################################################################
+
+
+---
+
+####################################
+# Fedora and RHLE
+####################################
+
+# DNF
+- name: Update dnf system packages
+  dnf: 
+    name: "*"
+    state: latest
+    update_cache: yes
+  register: dnf_upgrade
+  tags:
+    - update
+    - always
+  when:
+    - ansible_facts.distribution == "Fedora"
+  #retry: 5
+  #ignore_errors: yes
+  
+- name: DNF upgrade output
+  ansible.builtin.debug:
+    var: dnf_upgrade
+    verbosity: 2
+  when: dnf_upgrade is defined
+  tags:
+    - show_output
+    - never
+  
+# RHEL
+- name: "Installing Security Update on Red Hat Based System except Fedora"
+  yum: 
+    name: "*"
+    update_cache: yes
+    security: yes
+    state: latest
+  when: 
+    - ansible_facts['os_family'] == "RedHat"
+    - ansible_facts.distribution != "Fedora"
+  tags:
+    - update
+    - always
+  register: yum_upgrade
+  
+- name: YUM upgrade output
+  ansible.builtin.debug:
+    var: yum_upgrade
+    verbosity: 2
+  when: yum_upgrade is defined
+  tags:
+    - show_output
+    - never
+
+- name: List updated packages
+  shell: rpm -qa --last 2> /dev/null | grep "$(date +%a\ %d\ %b\ %Y)" |cut -f 1 -d " "| sort
+  register: updated_packages_list
+  tags:
+    - update
+    - always
+  args:
+    warn: no
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+        
+- name: Autoremove unneeded packages installed as dependencies
+  dnf:
+    autoremove: yes
+  when:
+    - ansible_facts.distribution != "Fedora"
+
+      
+####################################
+# Debian/Ubuntu/Proxmox
+####################################
+    
+# DEB
+
+- name: "Installing Security Update on Ubuntu Based System"
+  apt: upgrade=dist update_cache=yes
+  when: 
+    - ansible_facts['distribution'] == "Ubuntu"
+    - ansible_facts['distribution'] == "Debian"
+  register: apt_upgrade
+    
+###############################
+# General
+###############################
+    
+- name: List of updated packages today
+  debug: msg="{{ updated_packages_list.stdout_lines }}"
+  when:
+    - updated_packages_list is defined
+
+- name: Packages updated
+  debug: msg="Upgraded {{ updated_packages_list.stdout_lines|length }} packages today"
+  
+- name: No upgrades where made 
+  fail: 
+    msg: Host doesn't have an upgrade function defined.
+  when:
+    - dnf_upgrade is undefined and apt_upgrade is undefined and yum_upgrade is undefined

@@ -1,0 +1,16 @@
+###############################################################################
+#
+# Common role
+# roles/common/tasks/main.yml
+#
+# 21-2-18 Initial version v0.1
+#
+###############################################################################
+
+---
+- name: Upgrade system to latest packages
+  include: update.yml
+  tags:
+    - upgrade
+    - always
+                

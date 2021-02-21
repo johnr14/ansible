@@ -1,0 +1,33 @@
+###############################################################################
+#
+# Install base packages
+# /roles/packages/task/install_base.yml
+#
+# 21-2-18 Initial version v0.1
+#
+###############################################################################
+
+- name: Include rpmfusion vars
+  include_vars: vars/main.yml
+
+- name: Install base packages
+  dnf:
+    name: "{{ packages_base.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_base_result
+  when:
+    - base_packages | bool
+  tags:
+    - always
+    - install_base_packages
+
+        
+- debug: Result of base packages install
+    var: dnf_base_result
+# TODO: Clean up handler !
+    
+#- name: Install main packages
+  #dnf: name={{ item }} state=latest
+  #with_items:
+    #- 

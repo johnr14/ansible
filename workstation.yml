@@ -1,0 +1,30 @@
+###############################################################################
+#
+# Playbook workstation
+# workstation.yml
+#
+# 21-2-18 Initial version v0.1
+#
+###############################################################################
+
+---
+
+- name : Fedora workstation playbook
+  #hosts: '{{ target }}'
+  hosts: FedoraWorkstation
+  become: true
+  vars:
+    # Repositories
+    rpmfusion_nonfree: yes
+    rpmfusion_free: yes
+    # Packages
+    base_packages: yes
+    
+    
+  roles:
+    - common
+    - repositories
+    - packages
+
+# FIX SWAP AND HIBERNATE
+# https://superuser.com/questions/1581885/btrfs-luks-swapfile-how-to-hibernate-on-swapfile

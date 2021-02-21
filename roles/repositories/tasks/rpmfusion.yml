@@ -1,0 +1,144 @@
+###############################################################################
+#
+# RPMFusion repository
+# roles/repositories/tasks/rpmfusion.yml
+#
+# Copied from https://github.com/robertdebock/ansible-role-rpmfusion/blob/master/tasks/main.yml
+###############################################################################
+
+---
+# tasks file for rpmfusion
+- name: Include rpmfusion vars
+  include_vars: vars/rpmfusion.yml
+  
+# If the repo has already been removed,
+# then attempting to operate on it will fail
+- name: Check for RPM Fusion free repo
+  stat:
+    path: /etc/yum.repos.d/rpmfusion-free.repo
+  register: repo_file_free
+  
+- name: Check for RPM Fusion nonfree repo
+  stat:
+    path: /etc/yum.repos.d/rpmfusion-free.repo
+  register: repo_file_nonfree
+    
+- name: Install rpmfusion repositories
+  block:
+    - name: Block configure free gpg keys
+      block:
+        - name: install free gpg key
+          rpm_key:
+            key: "{{ rpmfusion_free_gpgp_key }}"
+            state: present
+
+        - name: Block install free repositories
+          dnf:
+            name: "{{ rpmfusion_free_repository }}"
+            state: present
+            validate_certs: no
+          notify:
+            - dnf update cache
+      when:
+        - rpmfusion_free | bool and repo_file_free.stat.exists == False
+
+    #- name: query | Are there RPM Fusion non-free keys ?
+      #shell: rpm -qa gpg-pubkey --qf "gpg-pubkey-%{version}-%{release} %{summary}\n" | grep "RPM Fusion free.*\<.*\.rpmfusion\.org\>" | cut -d " " -f 1
+      #check_mode: False
+      #changed_when: False
+      #register: list_installed_keys
+      #failed_when: list_installed_keys.rc != 0 or list_installed_keys.stderr != ""
+      #args:
+        #warn: no  # not supported by dnf module
+        
+    - name: Block configure non-free gpg keys
+      block:
+        - name: install nonfree gpg key
+          rpm_key:
+            key: "{{ rpmfusion_nonfree_gpgp_key }}"
+            state: present
+          #when: list_installed_keys.stderr == ""
+
+        - name: install nonfree repositories
+          dnf:
+            name: "{{ rpmfusion_nonfree_repository }}"
+            state: present
+            validate_certs: no
+          notify:
+            - dnf update cache
+      when:
+        - rpmfusion_nonfree | bool and repo_file_nonfree.stat.exists == False
+  when:
+    - ansible_distribution in [ "Amazon", "Fedora", "CentOS", "RedHat" ]
+    - repo_file_free.stat.exists == False or repo_file_nonfree.stat.exists == False
+  tags:
+    - install_rpmfusion
+    
+- name: Uninstall rpmfusion repositories
+  block:
+    - name: Free rpmfusion
+      block:
+        - name: query  | Are there RPM Fusion signing keys to be removed?
+          shell: rpm -qa gpg-pubkey --qf "gpg-pubkey-%{version}-%{release} %{summary}\n" | grep "RPM Fusion free.*\<.*\.rpmfusion\.org\>" | cut -d " " -f 1
+          check_mode: False
+          changed_when: False
+          register: list_installed_keys
+          failed_when: list_installed_keys.rc != 0 or list_installed_keys.stderr != ""
+          args:
+            warn: no  # not supported by dnf module
+          
+        - name: Uninstall free gpg key
+          rpm_key:
+            key: "{{ rpmfusion_free_gpgp_key }}"
+            state: absent
+          when:
+            - repo_file_free.stat.exists == True and rpmfusion_free | bool == False
+
+        - name: Uninstall free repositories
+          dnf:
+            name: rpmfusion-free-release
+            state: absent
+            validate_certs: no
+          notify:
+            - dnf update cache
+          when:
+            - rpmfusion_free | bool == False
+      when:
+        - rpmfusion_free | bool == False and repo_file_free.stat.exists == True
+
+    - name: Non-free rpmfusion
+      block:
+        - name: query  | Are there RPM Fusion signing keys to be removed?
+          shell: rpm -qa gpg-pubkey --qf "gpg-pubkey-%{version}-%{release} %{summary}\n" | grep "RPM Fusion nonfree.*\<.*\.rpmfusion\.org\>" | cut -d " " -f 1
+          check_mode: False
+          changed_when: False
+          register: list_installed_keys
+          failed_when: list_installed_keys.rc != 0 or list_installed_keys.stderr != ""
+          args:
+            warn: no  # not supported by dnf module
+          
+        - name: Uninstall nonfree gpg key
+          rpm_key:
+            key: "{{ rpmfusion_nonfree_gpgp_key }}"
+            state: absent
+          #loop: "{{ list_installed_keys.stdout_lines }}"
+            
+        #- name: install nonfree gpg key
+          #rpm_key:
+            #key: "{{ rpmfusion_nonfree_gpgp_key }}"
+            #state: present
+
+        - name: install nonfree repositories
+          dnf:
+            name: rpmfusion-nonfree-release
+            state: present
+            validate_certs: no
+          notify:
+            - dnf update cache
+      when:
+        - rpmfusion_nonfree | bool == False and repo_file_nonfree.stat.exists == True
+  when:
+    - ansible_distribution in [ "Amazon", "Fedora", "CentOS", "RedHat" ]
+    - repo_file_free.stat.exists == False or repo_file_nonfree.stat.exists == True
+  tags:
+    - install_rpmfusion
