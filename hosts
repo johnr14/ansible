@@ -3,7 +3,8 @@ ansible_user=root
 ansible_python_interpreter=/usr/bin/python3
 
 [FedoraWorkstation]
-f34 ansible_host=10.2.0.209
+#f34 ansible_host=10.2.0.209
+THRDWKS ansible_connection=local
 
 [Fedora:children]
 FedoraWorkstation

@@ -21,10 +21,77 @@
   tags:
     - always
     - install_base_packages
+    
+    
+# TODO
+# COMBINE ALL LISTS TO DO A SINGLE INSTALL !! 
+    
+- name: Install archive packages
+  dnf:
+    name: "{{ packages_archive.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_archive_result
+  when:
+    - archive_packages | bool
+  tags:
+    - always
+    - install_archive_packages
+    
+- name: Install codecs packages
+  dnf:
+    name: "{{ packages_codecs.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_codecs_result
+  when:
+    - codecs_packages | bool
+  tags:
+    - always
+    - install_codecs_packages
+    
+- name: Install fonts packages
+  dnf:
+    name: "{{ packages_fonts.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_fonts_result
+  when:
+    - fonts_packages | bool
+  tags:
+    - always
+    - install_fonts_packages
+    
+- name: Install hardware packages
+  dnf:
+    name: "{{ packages_hardware.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_hardware_result
+  when:
+    - hardware_packages | bool
+  tags:
+    - always
+    - install_hardware_packages
 
+- name: Install kde packages
+  dnf:
+    name: "{{ packages_kde.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_kde_result
+  when:
+    - kde_packages | bool
+  tags:
+    - always
+    - install_kde_packages
         
-- debug: Result of base packages install
-    var: dnf_base_result
+
+
+    
+    
+#- debug: Result of base packages install
+#    var: dnf_base_result
 # TODO: Clean up handler !
     
 #- name: Install main packages

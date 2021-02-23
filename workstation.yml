@@ -19,6 +19,12 @@
     rpmfusion_free: yes
     # Packages
     base_packages: yes
+    # Packages to be combined later
+    archive_packages: yes
+    codecs_packages: yes
+    fonts_packages: yes
+    hardware_packages: yes
+    kde_packages: yes
     
     
   roles:

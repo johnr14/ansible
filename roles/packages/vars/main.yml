@@ -49,7 +49,7 @@ packages_base:
     - vim-enhanced
     - wget
     - which
-    - xclip
+
 
   
 missing_packages:
@@ -107,102 +107,106 @@ packages_video:
   - kdenlive
   
 packages_desktop:
-  - NetworkManager-config-connectivity-fedora
-  - NetworkManager-wifi
-  - "@Common NetworkManager Submodules"
-  - wpa_supplicant
-  - wireless-tools 
-  - crda
-  - iw
-  - "@firefox"
-  - "@fonts"
-  # WIFI FIRMWARE PACKAGE
-  - gamemode
-  - langpacks-core-font-fr
-  - langpacks-core-font-fr
-  - langpacks-en
-  - langpacks-fr
+  RedHat:
+    - NetworkManager-config-connectivity-fedora
+    - NetworkManager-wifi
+    - "@Common NetworkManager Submodules"
+    - wpa_supplicant
+    - wireless-tools 
+    - crda
+    - iw
+    - "@firefox"
+    - "@fonts"
+    # WIFI FIRMWARE PACKAGE
+    - gamemode
+    - langpacks-core-font-fr
+    - langpacks-core-font-fr
+    - langpacks-en
+    - langpacks-fr
 
   
 packages_kde:
-  - ark
-  - bluedevil
-  - breeze-gtk
-  - breeze-icon-theme
-  - cagibi
-  - colord-kde
-  - cups-pk-helper
-  - dolphin
-  - ffmpeg-libs 
-  - glibc-all-langpacks
-  - gnome-keyring-pam
-  - gwenview
-  - kaccounts-providers
-  - kate
-  - kate-plugins 
-  - kcalc
-  - kcm_systemd
-  - kdegraphics-thumbnailers
-  - kde-gtk-config
-  - kde-partitionmanager
-  - kdeplasma-addons
-  - kde-print-manager
-  - kde-settings-pulseaudio
-  - kde-style-breeze
-  - kdialog
-  - kdiff3
-  - kdnssd
-  - kf5-syntax-highlighting
-  - kffmpegthumbnailer 
-  - kfind
-  - kgpg
-  - khotkeys
-  - kinfocenter
-  - kmenuedit
-  - kmouth
-  - kmplayer 
-  - konsole5
-  - kscreen
-  - kscreenlocker
-  - ksysguard
-  - kwalletmanager5
-  - kwebkitpart
-  - kwin
-  - pam-kwallet
-  - phonon-qt5-backend-gstreamer
-  - plasma-breeze
-  - plasma-desktop
-  - plasma-desktop-doc
-  - plasma-drkonqi
-  - plasma-nm
-  - plasma-nm-l2tp
-  - plasma-nm-openconnect
-  - plasma-nm-openswan
-  - plasma-nm-openvpn
-  - plasma-nm-pptp
-  - plasma-nm-ssh
-  - plasma-nm-vpnc
-  - plasma-pa
-  - plasma-user-manager
-  - plasma-workspace
-  - plasma-workspace-geolocation
-  - polkit-kde
-  - qt5-qtbase-gui
-  - qt5-qtdeclarative
-  - sddm
-  - sddm-breeze
-  - sddm-kcm
-  - setroubleshoot
-  - sni-qt
-  - spectacle
-  - system-config-language
-  
+  RedHat:
+    - ark
+    - bluedevil
+    - breeze-gtk
+    - breeze-icon-theme
+    - cagibi
+    - colord-kde
+    - cups-pk-helper
+    - dolphin
+    - ffmpeg-libs 
+    - glibc-all-langpacks
+    - gnome-keyring-pam
+    - gwenview
+    - kaccounts-providers
+    - kate
+    - kate-plugins 
+    - kcalc
+    - kcm_systemd
+    - kdegraphics-thumbnailers
+    - kde-gtk-config
+    - kde-partitionmanager
+    - kdeplasma-addons
+    - kde-print-manager
+    - kde-settings-pulseaudio
+    - kde-style-breeze
+    - kdialog
+    - kdiff3
+    - kdnssd
+    - kf5-syntax-highlighting
+    - kffmpegthumbnailer 
+    - kfind
+    - kgpg
+    - khotkeys
+    - kinfocenter
+    - kmenuedit
+    - kmouth
+    - kmplayer 
+    - konsole5
+    - kscreen
+    - kscreenlocker
+    - ksysguard
+    - kwalletmanager5
+    - kwebkitpart
+    - kwin
+    - pam-kwallet
+    - phonon-qt5-backend-gstreamer
+    - plasma-breeze
+    - plasma-desktop
+    - plasma-desktop-doc
+    - plasma-drkonqi
+    - plasma-nm
+    - plasma-nm-l2tp
+    - plasma-nm-openconnect
+    - plasma-nm-openswan
+    - plasma-nm-openvpn
+    - plasma-nm-pptp
+    - plasma-nm-ssh
+    - plasma-nm-vpnc
+    - plasma-pa
+    - plasma-user-manager
+    - plasma-workspace
+    - plasma-workspace-geolocation
+    - polkit-kde
+    - qt5-qtbase-gui
+    - qt5-qtdeclarative
+    - sddm
+    - sddm-breeze
+    - sddm-kcm
+    - setroubleshoot
+    - sni-qt
+    - spectacle
+    - system-config-language
+    - yakuake
+
+
 packages_wkthrd:
   - apcupsd
   - dymo-cups-drivers
   
 packages_hardware:
-  Fedora:
+  RedHat:
     - dmidecode
     - fwupd
     - fwupd-plugin-flashrom
@@ -213,31 +217,58 @@ packages_hardware:
 
 packages_ifxorg:
   - xorg-x11-drv-amdgpu 
-  
+  - xclip  
 
-packages_rpmfusion_packages:
+packages_wayland:
+
+    - wl-clipboard
+
+packages_rpmfusion:
   - gstreamer1-libav
   - gstreamer1-plugins-good
   - gstreamer1-vaapi
   - vlc
   
-packages_archive_packages:
-  #- cabextract
-  - dar
-  - lzip
-  - p7zip
-  - p7zip-plugins
-  - pbzip2
-  - pigz
-  - unrar
-  - unzip
-  - xz
-  - pxz
-  - lzip
-  - zstd
-  - bzip2
-  - gzip
-  
+packages_archive:
+  RedHat:
+    #- cabextract
+    - dar
+    - lzip
+    - p7zip
+    - p7zip-plugins
+    - pbzip2
+    - pigz
+    - unrar
+    - unzip
+    - xz
+    - pxz
+    - lzip
+    - zstd
+    - bzip2
+    - gzip
+
+packages_fonts:
+  RedHat:
+    - adobe-source-code-pro-fonts
+    - dejavu-sans-fonts
+    - dejavu-sans-mono-fonts
+    - dejavu-serif-fonts
+    - gnu-free-fonts-common
+    - gnu-free-mono-fonts
+    - gnu-free-sans-fonts
+    - gnu-free-serif-fonts
+    - levien-inconsolata-fonts
+    - liberation-fonts-common
+    - liberation-mono-fonts
+    - liberation-sans-fonts
+    - liberation-serif-fonts
+    - mozilla-fira-mono-fonts
+    - msimonson-anonymouspro-fonts
+    - overpass-fonts
+    - powerline-fonts
+    - terminus-fonts
+    - wine-fonts
+
 
   
 packages_tracer:
@@ -247,34 +278,36 @@ packages_tracer:
 package_docker:
   - docker-compose
 
-packages_codecs_packages:
-  - compat-ffmpeg28
-  - compat-ffmpeg28-devel
-  - egl-utils
-  - egl-wayland
-  - ffmpeg
-  - ffmpeg-libs
-  - gstreamer1-libav
-  - gstreamer1-plugins-bad-free
-  - gstreamer1-plugins-bad-freeworld
-  - gstreamer1-plugins-base
-  - gstreamer1-plugins-base-tools
-  - gstreamer1-plugins-good
-  - gstreamer1-plugins-good-extras
-  - gstreamer1-plugins-ugly
-  - gstreamer1-plugins-ugly-free
-  - gstreamer1-svt-av1
-  - gstreamer1-svt-vp9
-  - gstreamer1-vaapi
-  - gstreamer-ffmpeg 
-  - intel-media-driver
-  - libva-devel
-  - libva-intel-driver
-  - libva-intel-hybrid-driver
-  - libva-utils
-  - libva-vdpau-driver
-  - libvdpau-va-gl
-  - ffmpegthumbs
+packages_codecs:
+  RedHat:
+    - compat-ffmpeg28
+    - compat-ffmpeg28-devel
+    - egl-utils
+    - egl-wayland
+    - ffmpeg
+    - ffmpeg-libs
+    - gstreamer1-libav
+    - gstreamer1-plugins-bad-free
+    - gstreamer1-plugins-bad-freeworld
+    - gstreamer1-plugins-base
+    - gstreamer1-plugins-base-tools
+    - gstreamer1-plugins-good
+    - gstreamer1-plugins-good-extras
+    - gstreamer1-plugins-ugly
+    - gstreamer1-plugins-ugly-free
+    - gstreamer1-svt-av1
+    - gstreamer1-svt-vp9
+    - gstreamer1-vaapi
+    - gstreamer-ffmpeg 
+    - intel-media-driver
+    - libva-devel
+    #- libva-intel-driver
+    #- libva-intel-hybrid-driver
+    - libva-utils
+    - libva-vdpau-driver
+    - libvdpau-va-gl
+    - ffmpegthumbs
+    - libaacs  
 
   
 remove_packages:
@@ -333,26 +366,11 @@ remove_packages:
 
 #_codec_packages:
   #all:
-    #- gstreamer1-libav
-    #- gstreamer1-vaapi
-    #- gstreamer-ffmpeg
-    #- gstreamer1-plugins-bad-free
-    #- gstreamer1-plugins-bad-free-extras
-    #- gstreamer1-plugins-bad-freeworld
-    #- gstreamer1-plugins-good
-    #- gstreamer1-plugins-good-extras
-    #- gstreamer1-plugins-ugly
-    #- libaacs    
+  
     
 #_compression_packages:
   #all:
-    #- bzip2
-    #- dar
-    #- p7zip
-    #- p7zip-plugins
-    #- unzip
-    #- xz
-    #- zstd
+
 
 #_dev_packages:
   #all:
@@ -410,27 +428,6 @@ remove_packages:
     #- ntfs-3g-system-compression
     #- ntfsprogs
 
-#_fonts_packages:
-  #all:
-    #- adobe-source-code-pro-fonts
-    #- dejavu-sans-fonts
-    #- dejavu-sans-mono-fonts
-    #- dejavu-serif-fonts
-    #- gnu-free-fonts-common
-    #- gnu-free-mono-fonts
-    #- gnu-free-sans-fonts
-    #- gnu-free-serif-fonts
-    #- levien-inconsolata-fonts
-    #- liberation-fonts-common
-    #- liberation-mono-fonts
-    #- liberation-sans-fonts
-    #- liberation-serif-fonts
-    #- mozilla-fira-mono-fonts
-    #- msimonson-anonymouspro-fonts
-    #- overpass-fonts
-    #- powerline-fonts
-    #- terminus-fonts
-    #- wine-fonts
 
 #_gui_packages:
   #all:
