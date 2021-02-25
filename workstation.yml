@@ -13,7 +13,9 @@
   #hosts: '{{ target }}'
   hosts: FedoraWorkstation
   become: true
+  serial: 1
   vars:
+        
     # Repositories
     rpmfusion_nonfree: yes
     rpmfusion_free: yes
@@ -25,12 +27,27 @@
     fonts_packages: yes
     hardware_packages: yes
     kde_packages: yes
-    
+    # Flatpack
+    flakpack_flathub_enabled: yes
+    flakpack_upgrade_all: yes
+    flatpak_applications:
+      - "com.valvesoftware.Steam"
+
+  #tasks:
+    #- name: Write results to logfile
+      #blockinfile:
+        #create: yes
+        #path: "/var/log/ansible/log"
+        #insertafter: BOF
+        #block: "{{ validate.stdout }}"
+        #marker: "# {{ inventory_hostname }} {mark}"
+      #delegate_to: localhost
     
   roles:
     - common
     - repositories
     - packages
+    - flatpak
 
 # FIX SWAP AND HIBERNATE
 # https://superuser.com/questions/1581885/btrfs-luks-swapfile-how-to-hibernate-on-swapfile
