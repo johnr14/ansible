@@ -18,6 +18,13 @@
     - configure_host
     - configure_host-set_hostname
   
+- name: "Replace hostname with FQDN" 
+  lineinfile: 
+    dest=/etc/sysconfig/network 
+    line="HOSTNAME={{ ansible_fqdn }}"
+    regexp="^HOSTNAME=.*" 
+    state=present 
+  
 #- name: Ensure hostname is in /etc/hosts
   #lineinfile:
     #dest: /etc/hosts
