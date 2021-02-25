@@ -4,9 +4,7 @@
 # roles/common/tasks/update.yml
 #
 # 21-2-18 Initial version v0.1
-#
-# TODO: Handlers to parse output of upgraded and check for libc/kernel change and reboot
-#
+# 
 ###############################################################################
 
 

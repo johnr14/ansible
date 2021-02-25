@@ -1,3 +1,11 @@
+###############################################################################
+#
+# Cleanup of packages
+# roles/packages/tasks/cleanup.yml
+#
+# TODO: Remove cache and remove unwanted packages
+###############################################################################
+
 ---
 #- name: remove additional packages
   #dnf:

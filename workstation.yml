@@ -4,7 +4,7 @@
 # workstation.yml
 #
 # 21-2-18 Initial version v0.1
-#
+#  TODO: Write a logfile
 ###############################################################################
 
 ---
@@ -16,23 +16,16 @@
   serial: 1
   vars:
     # If there where changes to 
-    is_first_run: yes
-    rerun_common: yes
-    reconfigure_host: no
-    reconfigure_repositories: no
-    reinstall_packages: yes
-    reinstall_flatpak: no
-    ## Users and groups
-    #regular_users:
-      #- { name: riux, uid: 1000, groups: "wheel, systemd-journal, riux, steam", password: 'FIXME', homedir: '/home/riux' }
-      #- { name: steam, uid: 1100, groups: "steam", password: 'FIXME', homedir: '/home/steam' }
-      
-    #regular_groups:
-      #- { name: riux, gid: 1000,
-      #- { name: steam, gid: 1100 } 
-
-    #create_user_groups: yes
-    #strick_user_groups: yes # Remove unspecified general users 
+    is_first_run: yes # run every roles 
+    # Chose which rore to run 
+    role_common: yes
+    role_configure_host: no
+    role_repositories: no
+    role_packages: yes
+    role_flatpak: no
+    role_users_groups: yes
+    strick_user_groups: yes # Remove unspecified general users TODO
+    
     
     # Repositories
     rpmfusion_nonfree: yes
@@ -51,6 +44,7 @@
     flatpak_applications:
       - "com.valvesoftware.Steam"
 
+      # TODO: Write a logfile
   #tasks:
     #- name: Write results to logfile
       #blockinfile:
@@ -63,15 +57,17 @@
     
   roles:
     - role: common
-      when: is_first_run | bool or rerun_common | bool
+      when: is_first_run | bool or role_common | bool
     - role: configure_host
-      when: is_first_run | bool or reconfigure_host | bool
+      when: is_first_run | bool or role_configure_host | bool
     - role: repositories
-      when: is_first_run | bool or reconfigure_repositories | bool
+      when: is_first_run | bool or role_repositories | bool
     - role: packages
-      when: is_first_run | bool or reinstall_packages | bool
+      when: is_first_run | bool or role_packages | bool
     - role: flatpak
-      when: is_first_run | bool or reinstall_flatpak | bool
+      when: is_first_run | bool or role_flatpak | bool
+    - role: users_groups
+      when: is_first_run | bool or role_users_groups | bool
 
 # FIX SWAP AND HIBERNATE
 # https://superuser.com/questions/1581885/btrfs-luks-swapfile-how-to-hibernate-on-swapfile

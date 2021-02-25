@@ -3,7 +3,7 @@
 # Flatpack
 # roles/flatpak/tasks/main.yml
 #
-# FIXME: Upgrades fail with error 
+# FIXME: Upgrade fail with error when run as root "Failed to download missing issuer certificate from Authority"
 # (flatpak upgrade:13586): GLib-Net-WARNING **: 09:57:11.762: Failed to download missing issuer certificate from Authority Information Access URI http://secure.globalsign.com/cacert/root-r3.crt: failed g_file_read (do you need to install gvfs?): Operation not supported
 ###############################################################################
 ---
@@ -43,7 +43,7 @@
     - always    
 
 
-    
+# FIXME    
 #- name: Upgrade all flatpaks
   #shell:
     #cmd: flatpak update --noninteractive
