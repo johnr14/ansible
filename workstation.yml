@@ -20,7 +20,7 @@
     rerun_common: yes
     reconfigure_host: no
     reconfigure_repositories: no
-    reinstall_packages: no
+    reinstall_packages: yes
     reinstall_flatpak: no
     ## Users and groups
     #regular_users:
@@ -62,16 +62,16 @@
       #delegate_to: localhost
     
   roles:
-    - common
-      when: is_firts_run | bool or rerun_common | bool
-    - configure_host
-      when: is_firts_run | bool or reconfigure_host | bool
-    - repositories
-      when: is_firts_run | bool or reconfigure_repositories | bool
-    - packages
-      when: is_firts_run | bool or reinstall_packages | bool
-    - flatpak
-      when: is_firts_run | bool or reinstall_flatpak | bool
+    - role: common
+      when: is_first_run | bool or rerun_common | bool
+    - role: configure_host
+      when: is_first_run | bool or reconfigure_host | bool
+    - role: repositories
+      when: is_first_run | bool or reconfigure_repositories | bool
+    - role: packages
+      when: is_first_run | bool or reinstall_packages | bool
+    - role: flatpak
+      when: is_first_run | bool or reinstall_flatpak | bool
 
 # FIX SWAP AND HIBERNATE
 # https://superuser.com/questions/1581885/btrfs-luks-swapfile-how-to-hibernate-on-swapfile
