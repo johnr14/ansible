@@ -15,7 +15,25 @@
   become: true
   serial: 1
   vars:
-        
+    # If there where changes to 
+    is_first_run: yes
+    rerun_common: yes
+    reconfigure_host: no
+    reconfigure_repositories: no
+    reinstall_packages: no
+    reinstall_flatpak: no
+    ## Users and groups
+    #regular_users:
+      #- { name: riux, uid: 1000, groups: "wheel, systemd-journal, riux, steam", password: 'FIXME', homedir: '/home/riux' }
+      #- { name: steam, uid: 1100, groups: "steam", password: 'FIXME', homedir: '/home/steam' }
+      
+    #regular_groups:
+      #- { name: riux, gid: 1000,
+      #- { name: steam, gid: 1100 } 
+
+    #create_user_groups: yes
+    #strick_user_groups: yes # Remove unspecified general users 
+    
     # Repositories
     rpmfusion_nonfree: yes
     rpmfusion_free: yes
@@ -45,9 +63,15 @@
     
   roles:
     - common
+      when: is_firts_run | bool or rerun_common | bool
+    - configure_host
+      when: is_firts_run | bool or reconfigure_host | bool
     - repositories
+      when: is_firts_run | bool or reconfigure_repositories | bool
     - packages
+      when: is_firts_run | bool or reinstall_packages | bool
     - flatpak
+      when: is_firts_run | bool or reinstall_flatpak | bool
 
 # FIX SWAP AND HIBERNATE
 # https://superuser.com/questions/1581885/btrfs-luks-swapfile-how-to-hibernate-on-swapfile

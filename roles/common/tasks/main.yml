@@ -14,3 +14,6 @@
     - upgrade_system
     - always
                 
+                
+# TODO: Rename system
+  # Fix hostname https://serverfault.com/questions/38114/why-does-sudo-command-take-long-to-execute

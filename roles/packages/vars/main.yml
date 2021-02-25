@@ -49,18 +49,18 @@ packages_base:
     - vim-enhanced
     - wget
     - which
-
-
+    - yum-utils
   
 missing_packages:
-  - tuptime
-  - dfc
-  
+  RedHat:
+    - tuptime
+    - dfc
   
 packages_remote:
-  - xpra
-  - wireguard-tools
-  - tigervnc
+  RedHat:
+    - xpra
+    - wireguard-tools
+    - tigervnc
   
 packages_fusefs:
   - fuse-exfat 
@@ -326,6 +326,7 @@ remove_packages:
   - libsss_idmap 
   - libsss_nss_idmap 
   - sssd-client
+  #- fprintd # finger print login can cause long wait time to sudo https://bugzilla.redhat.com/show_bug.cgi?id=1534873
   
   
 ## NOTES FOR PACKAGES :

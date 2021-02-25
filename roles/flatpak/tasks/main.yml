@@ -51,3 +51,13 @@
     - flatpak
     - upgrade_flatpak_app
     - always   
+    
+
+
+#     flatpak_applications:
+#      - "com.valvesoftware.Steam"
+
+#- Check if Steam is installed
+  #with_items: "{{acceptable_versions}}"
+  
+#flatpak override --user --filesystem=/path/to/your/other/games com.valvesoftware.Steam
