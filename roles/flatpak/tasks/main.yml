@@ -1,0 +1,53 @@
+###############################################################################
+#
+# Flatpack
+# roles/flatpak/tasks/main.yml
+#
+###############################################################################
+---
+
+#vars:
+  #optional_vars_file: "{{ lookup('first_found', 'vars/main.yml', errors='ignore') }}"
+
+#- name: Include flatpak vars
+  #include_vars: vars/main.yml
+  #ignore_errors: yes
+  #when: optional_vars_file is file and optional_vars_file is defined
+        
+- name: Install flatpak remote
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+  when: 
+    - flakpack_flathub_enabled | bool
+  tags: 
+    - flatpak
+    - install_flathub
+    - always
+    
+- name: Install Flatpak Applications
+  become: true
+  flatpak:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ flatpak_applications }}"
+  when:
+    - flakpack_flathub_enabled | bool
+    - flatpak_applications is defined
+  tags: 
+    - flatpak
+    - install_flatpak_app
+    - always    
+
+- name: Upgrade all flatpaks
+  shell:
+    cmd: flatpak update --noninteractive
+  become: true
+  when:
+    - flakpack_flathub_enabled | bool
+    - flakpack_upgrade_all | bool
+  tags: 
+    - flatpak
+    - upgrade_flatpak_app
+    - always   

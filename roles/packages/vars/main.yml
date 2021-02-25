@@ -199,6 +199,7 @@ packages_kde:
     - spectacle
     - system-config-language
     - yakuake
+    - gvfs # Required for some flatpak by glib-net
 
 
 packages_wkthrd:
