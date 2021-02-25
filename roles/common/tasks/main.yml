@@ -11,6 +11,6 @@
 - name: Upgrade system to latest packages
   include: update.yml
   tags:
-    - upgrade
+    - upgrade_system
     - always
                 

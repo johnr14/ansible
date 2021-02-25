@@ -38,7 +38,7 @@
   when: dnf_upgrade is defined
   tags:
     - show_output
-    - never
+    - always
   
 # RHEL
 - name: "Installing Security Update on Red Hat Based System except Fedora"
