@@ -10,21 +10,6 @@
 - name: Include rpmfusion vars
   include_vars: vars/main.yml
 
-- name: Install base packages
-  dnf:
-    name: "{{ packages_base.RedHat }}"
-    state: present
-  become: yes
-  register: dnf_base_result
-  when:
-    - base_packages | bool
-  tags:
-    - always
-    - install_base_packages
-    
-    
-
-    
 - name: Install archive packages
   dnf:
     name: "{{ packages_archive.RedHat }}"
@@ -36,7 +21,19 @@
   tags:
     - always
     - install_archive_packages
-    
+  
+- name: Install base packages
+  dnf:
+    name: "{{ packages_base.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_base_result
+  when:
+    - base_packages | bool
+  tags:
+    - always
+    - install_base_packages
+           
 - name: Install codecs packages
   dnf:
     name: "{{ packages_codecs.RedHat }}"
@@ -48,6 +45,78 @@
   tags:
     - always
     - install_codecs_packages
+
+- name: Install customhw packages
+  dnf:
+    name: "{{ packages_customhw.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_customhw_result
+  when:
+    - customhw_packages | bool
+  tags:
+    - always
+    - install_customhw_packages    
+  
+- name: Install desktop packages
+  dnf:
+    name: "{{ packages_desktop.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_desktop_result
+  when:
+    - desktop_packages | bool
+  tags:
+    - always
+    - install_desktop_packages    
+
+- name: Install docker packages
+  dnf:
+    name: "{{ packages_docker.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_docker_result
+  when:
+    - docker_packages | bool
+  tags:
+    - always
+    - install_docker_packages  
+    
+- name: Install drawing packages
+  dnf:
+    name: "{{ packages_drawing.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_drawing_result
+  when:
+    - drawing_packages | bool
+  tags:
+    - always
+    - install_drawing_packages      
+
+- name: Install extradevel packages
+  dnf:
+    name: "{{ packages_extradevel.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_extradevel_result
+  when:
+    - extradevel_packages | bool
+  tags:
+    - always
+    - install_extradevel_packages  
+    
+- name: Install filesystems packages
+  dnf:
+    name: "{{ packages_filesystems.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_filesystems_result
+  when:
+    - filesystems_packages | bool
+  tags:
+    - always
+    - install_filesystems_packages  
     
 - name: Install fonts packages
   dnf:
@@ -60,6 +129,18 @@
   tags:
     - always
     - install_fonts_packages
+
+- name: Install graphviz packages
+  dnf:
+    name: "{{ packages_graphviz.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_graphviz_result
+  when:
+    - graphviz_packages | bool
+  tags:
+    - always
+    - install_graphviz_packages  
     
 - name: Install hardware packages
   dnf:
@@ -73,6 +154,30 @@
     - always
     - install_hardware_packages
 
+- name: Install ifwayland packages
+  dnf:
+    name: "{{ packages_ifwayland.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_ifwayland_result
+  when:
+    - ifwayland_packages | bool
+  tags:
+    - always
+    - install_ifwayland_packages  
+
+- name: Install ifxorg packages
+  dnf:
+    name: "{{ packages_ifxorg.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_ifxorg_result
+  when:
+    - ifxorg_packages | bool
+  tags:
+    - always
+    - install_ifxorg_packages  
+
 - name: Install kde packages
   dnf:
     name: "{{ packages_kde.RedHat }}"
@@ -84,4 +189,99 @@
   tags:
     - always
     - install_kde_packages
-        
+
+- name: Install language packages
+  dnf:
+    name: "{{ packages_language.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_language_result
+  when:
+    - language_packages | bool
+  tags:
+    - always
+    - install_language_packages  
+
+- name: Install libreoffice packages
+  dnf:
+    name: "{{ packages_libreoffice.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_libreoffice_result
+  when:
+    - libreoffice_packages | bool
+  tags:
+    - always
+    - install_libreoffice_packages  
+
+- name: Install multimedia packages
+  dnf:
+    name: "{{ packages_multimedia.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_multimedia_result
+  when:
+    - multimedia_packages | bool
+  tags:
+    - always
+    - install_multimedia_packages  
+    
+- name: Install network_client packages
+  dnf:
+    name: "{{ packages_network_client.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_network_client_result
+  when:
+    - network_client_packages | bool
+  tags:
+    - always
+    - install_network_client_packages  
+
+- name: Install network_client packages
+  dnf:
+    name: "{{ packages_network_client.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_network_client_result
+  when:
+    - network_client_packages | bool
+  tags:
+    - always
+    - install_network_client_packages  
+
+- name: Install remote packages
+  dnf:
+    name: "{{ packages_remote.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_remote_result
+  when:
+    - remote_packages | bool
+  tags:
+    - always
+    - install_remote_packages  
+
+- name: Install scan packages
+  dnf:
+    name: "{{ packages_scan.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_scan_result
+  when:
+    - scan_packages | bool
+  tags:
+    - always
+    - install_scan_packages  
+
+- name: Install videoediting packages
+  dnf:
+    name: "{{ packages_videoediting.RedHat }}"
+    state: present
+  become: yes
+  register: dnf_videoediting_result
+  when:
+    - videoediting_packages | bool
+  tags:
+    - always
+    - install_videoediting_packages          

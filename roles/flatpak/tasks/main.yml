@@ -5,6 +5,7 @@
 #
 # FIXME: Upgrade fail with error when run as root "Failed to download missing issuer certificate from Authority"
 # (flatpak upgrade:13586): GLib-Net-WARNING **: 09:57:11.762: Failed to download missing issuer certificate from Authority Information Access URI http://secure.globalsign.com/cacert/root-r3.crt: failed g_file_read (do you need to install gvfs?): Operation not supported
+# TODO: Install per user repository and application
 ###############################################################################
 ---
 
@@ -56,6 +57,13 @@
     #- upgrade_flatpak_app
     #- always   
     
+# TODO: Install per user repository and application
+#- name: Add the flathub flatpak repository remote to the user installation
+  #flatpak_remote:
+    #name: flathub
+    #state: present
+    #flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    #method: user
 
 
 #     flatpak_applications:

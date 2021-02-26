@@ -35,9 +35,28 @@
     # Packages to be combined later
     archive_packages: yes
     codecs_packages: yes
+    customhw_packages: no
+    desktop_packages: no
+    docker_packages: no
+    drawing_packages: no
+    extradevel_packages: no
+    filesystems_packages: no
     fonts_packages: yes
+    graphviz_packages: no
     hardware_packages: yes
+    ifwayland_packages: yes
+    ifxorg_packages: no
     kde_packages: yes
+    language_packages: yes
+    libreoffice_packages: no
+    multimedia_packages: no
+    network_client_packages: no
+    publishing_packages: no
+    remote_packages: no
+    scan_packages: no
+    videoediting_packages: no
+
+
     # Flatpack
     flakpack_flathub_enabled: yes
     flakpack_upgrade_all: yes
@@ -66,8 +85,6 @@
       when: is_first_run | bool or role_packages | bool
     - role: flatpak
       when: is_first_run | bool or role_flatpak | bool
-    - role: users_groups
-      when: is_first_run | bool or role_users_groups | bool
 
 # FIX SWAP AND HIBERNATE
 # https://superuser.com/questions/1581885/btrfs-luks-swapfile-how-to-hibernate-on-swapfile

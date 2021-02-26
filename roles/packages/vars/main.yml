@@ -1,6 +1,68 @@
+###############################################################################
+#
+# packages lists
+# roles/packages/vars/main.yml
+#
+# TODO: combine into a single package list to install
+# TODO: missing packages
+#
+############################################################################### 
+
+
 ---
 
+# missing_packages : packages that must be installed elsewhere as they are not in repo TODO
+# packages_archive : archiving programs
+# packages_base : always install
+# packages_codecs : audio and video codecs and transcoding tools
+# packages_customhw : hardware supporting packages for specific machines
+# packages_desktop : Only needed on a desktop
+# packages_docker : install docker packages
+# packages_drawing : for drawing and photo
+# packages_extradevel : more dev tools for debugging
+# packages_filesystems : filesystem management tools
+# packages_fonts : install additionnal fonts
+# packages_graphviz : for generating visual graphs
+# packages_hardware : general hardware support
+# packages_ifwayland : wayland specific packages
+# packages_ifxorg : x11 specific packages
+# packages_kde : Kde packages
+# packages_language : language for correcting
+# packages_libreoffice : libre office packages
+# packages_multimedia : multimedia packages
+# packages_network_client : to access remote files
+# packages_publishing : for creating documents
+# packages_remote : To facilitate remote connectivity/remote viewing
+# packages_scan : for scanning documents
+# packages_videoediting : for editing videos
 
+
+# remove_packages : packages to be removed
+
+
+missing_packages:
+  RedHat:
+    - tuptime
+    - dfc
+
+packages_archive:
+  RedHat:
+    #- cabextract
+    - bzip2
+    - dar
+    - gzip
+    - lzip
+    - lzip
+    - p7zip
+    - p7zip-plugins
+    - pbzip2
+    - pigz
+    - pxz
+    - unrar
+    - unzip
+    - xz
+    - zstd
+    
 packages_base:
   RedHat:
     - aria2
@@ -13,6 +75,10 @@ packages_base:
     - cpio
     - curl
     - dhcp-client
+    - dnf-automatic
+    - dnf-plugins-core
+    - dnf-plugin-system-upgrade
+    - dnf-utils
     - dos2unix
     - dstat
     - earlyoom
@@ -22,6 +88,7 @@ packages_base:
     - findutils
     - fpaste
     - git
+    - git-extras
     - git-lfs
     - glibc-langpack-en
     - gnupg2
@@ -41,90 +108,198 @@ packages_base:
     - openssh-server
     - powertop
     - pv
+    - rsync
     - screen
     - sudo
     - sysfsutils
     - terminator
     - tmux
+    - toolbox
+    - traceroute
     - vim-enhanced
     - wget
     - which
+    - whois
     - yum-utils
-  
-missing_packages:
-  RedHat:
-    - tuptime
-    - dfc
-  
-packages_remote:
-  RedHat:
-    - xpra
-    - wireguard-tools
-    - tigervnc
-  
-packages_fusefs:
-  - fuse-exfat 
-  - exfat-utils
-  - f2fs-tools
-  - ntfs-3g
-  - dosfstools
-  - e2fsprogs
-  
-packages_draw:
-  - inkscape
-  - gimp
-packages_scan:
-  - gscan2pdf
-  - shrinkpdf
-  - skanlite
-  - ImageMagick
-  - GraphicsMagick
-  - ghostscript
-  - ghostscript-core
-  - ghostscript-tools-fonts
-  - ghostscript-tools-printing
-  
-  
-packages_graphviz:
-  - graphviz
-  - graphviz-gd
-  - graphviz-graphs
-  - graphviz-lua
-  - graphviz-perl
-  - graphviz-tcl
-  
-  
-publishing:
-  - asciidoctor
+ 
 
-packages_gui:
-  - gparted
+# TODO: Split gui vs no gui    
+packages_codecs:
+  RedHat:
+    - compat-ffmpeg28
+    - compat-ffmpeg28-devel
+    - ffmpeg
+    - ffmpeg-libs
+    - ffmpegthumbs
+    - gstreamer1-libav
+    - gstreamer1-libav
+    - gstreamer1-plugins-bad-free
+    - gstreamer1-plugins-bad-freeworld
+    - gstreamer1-plugins-base
+    - gstreamer1-plugins-base-tools
+    - gstreamer1-plugins-good
+    - gstreamer1-plugins-good
+    - gstreamer1-plugins-good-extras
+    - gstreamer1-plugins-ugly
+    - gstreamer1-plugins-ugly-free
+    - gstreamer1-svt-av1
+    - gstreamer1-svt-vp9
+    - gstreamer1-vaapi
+    - gstreamer1-vaapi
+    - gstreamer-ffmpeg 
+    - intel-media-driver
+    - libaacs  
+    - libva-devel
+    #- libva-intel-driver
+    #- libva-intel-hybrid-driver
+    - libva-utils
+    - libva-vdpau-driver
+    - libvdpau-va-gl
+    - mencoder
+    - youtube-dl
 
-packages_extradevel:
-  - stacer
-  
-packages_video: 
-  - kdenlive
-  
+packages_customhw:
+  RedHat:
+    thrdwks:
+      - apcupsd
+      - dymo-cups-drivers
+
 packages_desktop:
   RedHat:
-    - NetworkManager-config-connectivity-fedora
-    - NetworkManager-wifi
     - "@Common NetworkManager Submodules"
-    - wpa_supplicant
-    - wireless-tools 
     - crda
-    - iw
     - "@firefox"
     - "@fonts"
-    # WIFI FIRMWARE PACKAGE
     - gamemode
+    - iw
     - langpacks-core-font-fr
     - langpacks-core-font-fr
     - langpacks-en
     - langpacks-fr
+    - NetworkManager-config-connectivity-fedora
+    - NetworkManager-wifi
+    - pass
+    # WIFI FIRMWARE PACKAGE
+    - wireless-tools 
+    - wpa_supplicant      
+    
+packages_dev:
+  RedHat:
+    - bc
+    - binutils
+    - bison
+    - dialog
+    - elfutils-libelf-devel
+    - flex
+    - gcc
+    - go
+    - kernel-devel
+    - kernel-headers
+    - kexec-tools
+    - make
+    - ncurses-devel
+    - ncurses-libs
+    - openssl-devel
+    - perl
+    - rust
+    #- rpm-build
+    #- rpmdevtools  
 
-  
+              
+package_docker:
+  - docker
+  - docker-client
+  - docker-client-latest
+  - docker-common
+  - docker-compose  
+  - docker-engine
+  - docker-engine-selinux
+  - docker-latest
+  - docker-latest-logrotate
+  - docker-logrotate
+  - docker-selinux
+
+        
+packages_drawing:
+  RedHat:
+    - inkscape
+    - gimp
+    - digicam
+    - darktable
+
+packages_extradevel:
+  RedHat:
+    - stacer
+    - bpftrace
+    - strace
+    
+packages_filesystems:
+  RedHat:
+    - autofs
+    - btrfs-progs
+    - dosfstools
+    - e2fsprogs
+    - exfat-utils
+    - f2fs-tools
+    - fuse
+    - fuse-exfat 
+    - ntfs-3g-system-compression
+    - ntfsprogs
+    - xfsprogs
+    - xfsdump
+    - xfsprogs-xfs_scrub
+    - btrfsmaintenance # To configure !      
+      
+packages_fonts:
+  RedHat:
+    - adobe-source-code-pro-fonts
+    - dejavu-sans-fonts
+    - dejavu-sans-mono-fonts
+    - dejavu-serif-fonts
+    - gnu-free-fonts-common
+    - gnu-free-mono-fonts
+    - gnu-free-sans-fonts
+    - gnu-free-serif-fonts
+    - levien-inconsolata-fonts
+    - liberation-fonts-common
+    - liberation-mono-fonts
+    - liberation-sans-fonts
+    - liberation-serif-fonts
+    - mozilla-fira-mono-fonts
+    - msimonson-anonymouspro-fonts
+    - overpass-fonts
+    - powerline-fonts
+    - terminus-fonts
+    - wine-fonts
+
+packages_graphviz:
+  RedHat:
+    - graphviz
+    - graphviz-gd
+    - graphviz-graphs
+    - graphviz-lua
+    - graphviz-perl
+    - graphviz-tcl
+      
+packages_hardware:
+  RedHat:
+    - dmidecode
+    - fwupd
+    - fwupd-plugin-flashrom
+    - hddtemp
+    - ipmitool
+    - lm_sensors
+    - smartmontools   
+
+packages_ifwayland:
+  RedHat:
+    - wl-clipboard
+
+packages_ifxorg:
+  RedHat:
+    - xclip  
+    - xorg-x11-drv-amdgpu 
+    
 packages_kde:
   RedHat:
     - ark
@@ -138,6 +313,7 @@ packages_kde:
     - ffmpeg-libs 
     - glibc-all-langpacks
     - gnome-keyring-pam
+    - gvfs 
     - gwenview
     - kaccounts-providers
     - kate
@@ -199,256 +375,125 @@ packages_kde:
     - spectacle
     - system-config-language
     - yakuake
-    - gvfs # Required for some flatpak by glib-net
-
-
-packages_wkthrd:
-  - apcupsd
-  - dymo-cups-drivers
-  
-packages_hardware:
+    
+packages_language:
   RedHat:
-    - dmidecode
-    - fwupd
-    - fwupd-plugin-flashrom
-    - hddtemp
-    - lm_sensors
-    - smartmontools
-    - ipmitool
-
-packages_ifxorg:
-  - xorg-x11-drv-amdgpu 
-  - xclip  
-
-packages_wayland:
-
-    - wl-clipboard
-
-packages_rpmfusion:
-  - gstreamer1-libav
-  - gstreamer1-plugins-good
-  - gstreamer1-vaapi
-  - vlc
-  
-packages_archive:
+    - aspell-en
+    - aspell-fr
+    - hunspell-en
+    - hunspell-en-US
+    - hunspell-fr
+    
+packages_libreoffice:
   RedHat:
-    #- cabextract
-    - dar
-    - lzip
-    - p7zip
-    - p7zip-plugins
-    - pbzip2
-    - pigz
-    - unrar
-    - unzip
-    - xz
-    - pxz
-    - lzip
-    - zstd
-    - bzip2
-    - gzip
+    - "@libreoffice"
+    - libreoffice-langpack-en
+    - libreoffice-langpack-fr
+    - libreoffice-ogltrans
+    - libreoffice-opensymbol-fonts
+    - libreoffice-pdfimport
+    - libreoffice-ure
+    - libreoffice-xsltfilter  
 
-packages_fonts:
+packages_multimedia:
   RedHat:
-    - adobe-source-code-pro-fonts
-    - dejavu-sans-fonts
-    - dejavu-sans-mono-fonts
-    - dejavu-serif-fonts
-    - gnu-free-fonts-common
-    - gnu-free-mono-fonts
-    - gnu-free-sans-fonts
-    - gnu-free-serif-fonts
-    - levien-inconsolata-fonts
-    - liberation-fonts-common
-    - liberation-mono-fonts
-    - liberation-sans-fonts
-    - liberation-serif-fonts
-    - mozilla-fira-mono-fonts
-    - msimonson-anonymouspro-fonts
-    - overpass-fonts
-    - powerline-fonts
-    - terminus-fonts
-    - wine-fonts
+    - audacity
+    - clementine
+    - handbrake
+    - kodi
+    - mplayer
+    - soundconverter
+    - vlc
+    - vlc-extras
+    - xnconvert
+
+    
+packages_network_client:
+  RedHat:
+    - cifs-utils
+    - nfs-utils
+    - openldap-clients
+    - openssh-clients
+    - samba-client
+     
+packages_publishing:
+  RedHat:
+    - asciidoctor      
+    
+packages_remote:
+  RedHat:
+    - xpra
+    - wireguard-tools
+    - tigervnc
+    #- kdenetwork-krdc
+    #- tigervnc
+
+
+packages_scan:
+  RedHat:
+    - gscan2pdf
+    - shrinkpdf
+    - skanlite
+    - ImageMagick
+    - GraphicsMagick
+    - ghostscript
+    - ghostscript-core
+    - ghostscript-tools-fonts
+    - ghostscript-tools-printing
+    # OCR !!
+  
+packages_videoediting: 
+  RedHat:
+    - kdenlive
+    #- blender
+    - shotcut
+  
+
 
 
   
-packages_tracer:
-  - bpftrace
-  - strace
-  
-package_docker:
-  - docker-compose
 
-packages_codecs:
-  RedHat:
-    - compat-ffmpeg28
-    - compat-ffmpeg28-devel
-    - egl-utils
-    - egl-wayland
-    - ffmpeg
-    - ffmpeg-libs
-    - gstreamer1-libav
-    - gstreamer1-plugins-bad-free
-    - gstreamer1-plugins-bad-freeworld
-    - gstreamer1-plugins-base
-    - gstreamer1-plugins-base-tools
-    - gstreamer1-plugins-good
-    - gstreamer1-plugins-good-extras
-    - gstreamer1-plugins-ugly
-    - gstreamer1-plugins-ugly-free
-    - gstreamer1-svt-av1
-    - gstreamer1-svt-vp9
-    - gstreamer1-vaapi
-    - gstreamer-ffmpeg 
-    - intel-media-driver
-    - libva-devel
-    #- libva-intel-driver
-    #- libva-intel-hybrid-driver
-    - libva-utils
-    - libva-vdpau-driver
-    - libvdpau-va-gl
-    - ffmpegthumbs
-    - libaacs  
+  
+
+
+# put packages that have dependencies to rpm fusion here
+#packages_rpmfusion:
+  #RedHat:
+
+
+
+
+  
+
+
 
   
 remove_packages:
-  - evolution
-  - calligra-*
-  - evolution-ews
-  - evolution-help
-  - gnome-classic-session
-  - gnome-documents
-  - gnome-documents-libs
-  - gnome-system-monitor
-  - mediawriter
-  - mosh
-  - plasma-pk-updates 
-  - libsss_idmap 
-  - libsss_nss_idmap 
-  - sssd-client
-  #- fprintd # finger print login can cause long wait time to sudo https://bugzilla.redhat.com/show_bug.cgi?id=1534873
+  RedHat:
+    - evolution
+    - calligra-*
+    - evolution-ews
+    - evolution-help
+    - gnome-classic-session
+    - gnome-documents
+    - gnome-documents-libs
+    - gnome-system-monitor
+    - mediawriter
+    - mosh
+    - plasma-pk-updates 
+    - libsss_idmap 
+    - libsss_nss_idmap 
+    - sssd-client
+    - akgregator
+    - kget
+    - kmail
+    - knode
+    - konqueror
+    - kontact
+    #- fprintd # finger print login can cause long wait time to sudo https://bugzilla.redhat.com/show_bug.cgi?id=1534873
   
-  
-## NOTES FOR PACKAGES :
-##
-## 1. We are using os_family as grouping as package names should not have any difference. You may add a distribution also and it will parse it (like Ubuntu).
-## 2. If a package require particular configuration, better install it thru it's own role.
-## 3. These are my general use packages, currently tested on Fedora.
-## 4. Inspired from https://github.com/crivetimihai/ansible_workstation/blob/master/roles/packages/vars/main.yml
-
-      #- htop
-      #- mc
-      #- tmux
-      #- tuptime
-      #- kaccounts-providers
-      #- ktp-accounts-kcm
-      #- yakuake
 
 
-## Prereq packages: they get installed first, so put things like epel-release here
-#_packages_prereq:
-  #all:
-    #- {{ default([]) }}
-  #Debian:
-    #- {{ default([]) }}
-  #FreeBSD:
-    #- {{ default([]) }}  
-  #RedHat:
-    #- dnf-plugin-system-upgrade
-    #- dnf-utils
-    #- dnf-automatic
-    #- dnf-plugins-core
-    #- toolbox
-  #Suse:
-    #- {{ default([]) }}   
-
-#_admin_packages: 
-  #all:
-    #- sudo
-
-#_codec_packages:
-  #all:
-  
-    
-#_compression_packages:
-  #all:
-
-
-#_dev_packages:
-  #all:
-    #- bc
-    #- binutils
-    #- bison
-    #- dialog
-    #- elfutils-libelf-devel
-    #- flex
-    #- gcc
-    #- go
-    #- kernel-devel
-    #- kernel-headers
-    #- kexec-tools
-    #- make
-    #- ncurses-devel
-    #- ncurses-libs
-    #- openssl-devel
-    #- perl
-    #- rust
-
-  #RedHat:
-    #- rpm-build
-    #- rpmdevtools  
-  #Suse:
-    #- rpm-build
-    #- rpmdevtools    
-  
-#_docker_packages:
-  #all:
-    #- docker
-    #- docker-client
-    #- docker-client-latest
-    #- docker-common
-    #- docker-engine
-    #- docker-engine-selinux
-    #- docker-latest
-    #- docker-latest-logrotate
-    #- docker-logrotate
-    #- docker-selinux
-
-#_editor_packages:
-  #all:
-    #- vim
-    #- vim-enhanced 
-
-#_filesystem_packages:
-  #all:
-    #- autofs
-    #- btrfs-progs
-    #- exfat-utils
-    #- fuse
-    #- fuse-exfat  
-    #- ntfs-3g
-    #- ntfs-3g-system-compression
-    #- ntfsprogs
-
-
-#_gui_packages:
-  #all:
-    #- ffmpegthumbnailer
-    #- kaccounts-providers
-    #- kate
-    #- ktp-accounts-kcm
-    #- yakuake
-  ##- keepassxc
-
-#_integrity_packages:
-  #all:
-    #- {{ default([]) }}   
-
-#_language_packages:
-  #all:
-    #- aspell-en
-    #- hunspell-en
-    #- hunspell-en-US
 
 #_management_packages:
   #all:
@@ -464,125 +509,12 @@ remove_packages:
     #- collectd
     #- lm_sensors-sensord
 
-#_multimedia_packages:
-  #all:
-    #- audacity
-    #- clementine
-    #- darktable
-    #- digicam
-    #- ffmpeg
-    #- gimp
-    #- handbrake
-    #- inkscape
-    #- kdenlive
-    #- kodi
-    #- obs
-    #- openshot
-    #- soundconverter
-    #- vlc
-    #- vlc-extras
-    #- xnconvert
-    #- youtube-dl
-  
-#_network_client_packages:
-  #all:
-    #- cifs-utils
-    #- nfs-utils
-    #- openldap-clients
-    #- openssh-clients
-    #- samba-client
-    
-#_networking_packages:
-  #all:
-    #- aria2
-    #- curl
-    #- dig
-    #- net-tools
-    #- rsync
-    #- traceroute
-    #- wget
-    #- whois
-
-#_office_packages:
-  #all:
-    #- Okular
-    #- Tellico
-    #- "@libreoffice"
-    #- libreoffice-langpack-en
-    #- libreoffice-langpack-fr
-    #- libreoffice-ogltrans
-    #- libreoffice-opensymbol-fonts
-    #- libreoffice-pdfimport
-    #- libreoffice-ure
-    #- libreoffice-xsltfilter
-  
-#_remote-client_packages:
-  #all:
-    #- kdenetwork-krdc
-    #- tigervnc
-
 #_security_packages:
   #all: 
     #- chkrootkit
     #- inotify-tools
     #- rkhunter
-  
-#_sysutil_packages:
-  #all:
-    #- acpi
-    #- dmidecode
-    #- hddtemp
-    #- htop
-    #- iotop
-    #- gparted
-    #- lm_sensors
-    #- lshw
-    #- lsof
-    #- mbuffer
-    #- powertop
-    #- pv
-    #- smartmontools
-    #- sysstat
-    #- tree
-    #- which
-   
-#_utility_packages:
-  #all:
-    #- bash
-    #- bash-completion
-    #- bc
-    #- git
-    #- git-extra
-    #- mlocate
-    #- neofetch
-    #- screen
-    #- tmux
-    #- xclip
-  #Debian:
-    #- dfc
 
-
-#_web_packages:
-  #all:
-    ##- brave
-    #- firefox
-    #- chromium
-    #- chromium-vaapi
-  ##  - chromium-libs-media-freeworld
-
-#_toremove_packages:
-  #all:
-    #- abrt
-    #- gnome-abrt
-    #- ntp
-    #- system-config-date
-    #- system-config-firewall
-    #- system-config-firewall-base
-    #- system-config-firewall-tui
-    #- system-config-keyboard
-    #- system-config-language
-    #- system-config-services
-    #- system-config-users
   
 ## Combining the required packages
   
