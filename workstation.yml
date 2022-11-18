@@ -11,27 +11,34 @@
 
 - name : Fedora workstation playbook
   #hosts: '{{ target }}'
-  hosts: FedoraWorkstation
+  hosts: workstation
   become: true
   serial: 1
+
+  #var_files:
+  #  - var/vars.yml
+
   vars:
     # If there where changes to 
     is_first_run: yes # run every roles 
+
     # Chose which rore to run 
     role_common: yes
     role_configure_host: no
     role_repositories: no
     role_packages: yes
     role_flatpak: no
-    role_users_groups: yes
-    strick_user_groups: yes # Remove unspecified general users TODO
+    role_users_groups: no
+    strick_user_groups: no # Remove unspecified general users TODO
     
     
     # Repositories
     rpmfusion_nonfree: yes
     rpmfusion_free: yes
+
     # Packages
     base_packages: yes
+
     # Packages to be combined later
     archive_packages: yes
     codecs_packages: yes
@@ -41,13 +48,13 @@
     drawing_packages: no
     extradevel_packages: no
     filesystems_packages: no
-    fonts_packages: yes
+    fonts_packages: no
     graphviz_packages: no
-    hardware_packages: yes
-    ifwayland_packages: yes
+    hardware_packages: no
+    ifwayland_packages: no
     ifxorg_packages: no
-    kde_packages: yes
-    language_packages: yes
+    kde_packages: no
+    language_packages: no
     libreoffice_packages: no
     multimedia_packages: no
     network_client_packages: no
@@ -56,24 +63,12 @@
     scan_packages: no
     videoediting_packages: no
 
-
     # Flatpack
     flakpack_flathub_enabled: yes
     flakpack_upgrade_all: yes
     flatpak_applications:
       - "com.valvesoftware.Steam"
 
-      # TODO: Write a logfile
-  #tasks:
-    #- name: Write results to logfile
-      #blockinfile:
-        #create: yes
-        #path: "/var/log/ansible/log"
-        #insertafter: BOF
-        #block: "{{ validate.stdout }}"
-        #marker: "# {{ inventory_hostname }} {mark}"
-      #delegate_to: localhost
-    
   roles:
     - role: common
       when: is_first_run | bool or role_common | bool
