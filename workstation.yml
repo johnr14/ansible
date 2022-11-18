@@ -64,8 +64,8 @@
     videoediting_packages: no
 
     # Flatpack
-    flakpack_flathub_enabled: yes
-    flakpack_upgrade_all: yes
+    flakpack_flathub_enabled: no 
+    flakpack_upgrade_all: no
     flatpak_applications:
       - "com.valvesoftware.Steam"
 
@@ -79,7 +79,7 @@
     - role: packages
       when: is_first_run | bool or role_packages | bool
     - role: flatpak
-      when: is_first_run | bool or role_flatpak | bool
+      when: role_flatpak | bool
 
 # FIX SWAP AND HIBERNATE
 # https://superuser.com/questions/1581885/btrfs-luks-swapfile-how-to-hibernate-on-swapfile
