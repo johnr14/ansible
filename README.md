@@ -4,6 +4,7 @@ Yet-an-other ansible
 ansible-playbook -i hosts workstation.yml --tags=show_output  -vvv 
 
 Tags list and definitions:
+```
 always
 configure_host
 configure_host-set_hostname
@@ -26,33 +27,34 @@ rpmfusion
 show_output : be more verbose
 update
 upgrade_system
+```
 
 Tasks lists and summary:
 
 
 List to TODO:
-Passwords
-Configure users !!
-Install VLC and all codecs
-Install copr 
-Cleanup after packages install
-Filesystem : snapshot root
-Tags cleanup and standardisation
-Steam : add external library
-Steam : icon fix? 
-Allow show_output on every tasks
-roles/flatpak/tasks/main.yml TODO: Install per user repository and application
-roles/packages/task/install_base.yml TODO: Allow installation depending on distribution and distribution family
-roles/packages/task/install_base.yml TODO: COMBINE ALL LISTS TO DO A SINGLE INSTALL !! 
-roles/packages/tasks/cleanup.yml TODO: Remove cache and remove unwanted packages
-roles/packages/vars/main.yml TODO: combine into a single package list to install
-roles/packages/vars/main.yml TODO: missing packages
-workstation.yml TODO: Write a logfile
+- Passwords
+- Configure users !!
+- Install VLC and all codecs
+- Install copr 
+- Cleanup after packages install
+- Filesystem : snapshot root
+- Tags cleanup and standardisation
+- Steam : add external library
+- Steam : icon fix? 
+- Allow show_output on every tasks
+- roles/flatpak/tasks/main.yml TODO: Install per user repository and application
+- roles/packages/task/install_base.yml TODO: Allow installation depending on distribution and distribution family
+- roles/packages/task/install_base.yml TODO: COMBINE ALL LISTS TO DO A SINGLE INSTALL !! 
+- roles/packages/tasks/cleanup.yml TODO: Remove cache and remove unwanted packages
+- roles/packages/vars/main.yml TODO: combine into a single package list to install
+- roles/packages/vars/main.yml TODO: missing packages workstation.yml
+- Write a logfile
 
 
 List of FIXME:
-roles/flatpak/tasks/main.yml FIXME: Upgrade fail with error when run as root "Failed to download missing issuer certificate from Authority"
-Install steam flatpak as --user under the desired users
+- roles/flatpak/tasks/main.yml FIXME: Upgrade fail with error when run as root "Failed to download missing issuer certificate from Authority"
+- Install steam flatpak as --user under the desired users
 
 Notes to self :
 
