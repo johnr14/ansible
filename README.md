@@ -38,6 +38,7 @@ List to TODO:
 
 - Package cleanup
   - Remove package from autoinstall if it needs a configuration before usage
+  - Separate desktop vs server vs extra
 
 - Special applications that need to be built
   - Neovide (build)
@@ -46,9 +47,25 @@ List to TODO:
 - Application settings
   - Firefox
   - KDE
+  - Steam (flatpak)
+    - Set library directory
 
 - Dotfiles management
 
+- Machine specific config / install
+
+- Filesystem
+  - Check if btrfs
+    - Create snapshot if first run
+    - Enable fstrim
+    - Set compression level
+    
+- UEFI
+  - Check if UEFI
+  - Check if root is encrypted with LUKS
+  - Check if TPM is available
+
+- 
 
 - Install VLC and all codecs
 - Install copr 
