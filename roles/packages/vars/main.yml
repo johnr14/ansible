@@ -88,6 +88,7 @@ packages_base:
     - findutils
     - fish
     - fpaste
+    - iftop
     - git
     - git-extras
     - git-lfs
@@ -98,6 +99,7 @@ packages_base:
     - iperf3
     - iproute
     - iproute-tc
+    - iptraf
     - iputils
     - iputils
     - lshw
@@ -105,7 +107,9 @@ packages_base:
     - mbuffer
     - neofetch
     - net-tools
+    - nistat
     - nmap
+    - ntop
     - openssh-server
     - powertop
     - pv
@@ -184,6 +188,7 @@ packages_desktop:
     - NetworkManager-config-connectivity-fedora
     - NetworkManager-wifi
     - pass
+    - spectacle
     # WIFI FIRMWARE PACKAGE
     - wireless-tools 
     - wpa_supplicant      
@@ -294,6 +299,7 @@ packages_hardware:
     - fwupd
     - fwupd-plugin-flashrom
     - hddtemp
+    - hdparm
     - ipmitool
     - lm_sensors
     - smartmontools
