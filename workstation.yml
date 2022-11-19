@@ -72,7 +72,7 @@
     flatpak_applications:
       - "com.valvesoftware.Steam"
 
-  tasks:
+  pre_tasks:
     - name: Create the log file for this run
       shell: /bin/bash -l -c "mv {{ lookup('env', 'HOME') }}/.ansible/log/ansible.log  {{ lookup('env', 'HOME') }}/.ansible/log/ansible.log-{{ lookup('pipe', 'date +%Y%m%d%H%M%S') }}"
       delegate_to: localhost
