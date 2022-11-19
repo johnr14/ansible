@@ -1,0 +1,4 @@
+# User
+local_user: john
+local_user_email: john@email.host
+local_user_passwordless_sudo: true

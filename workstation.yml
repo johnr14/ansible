@@ -25,10 +25,10 @@
     # Chose which rore to run 
     role_common: yes
     role_configure_host: no
-    role_repositories: no
+    role_repositories: yes
     role_packages: yes
     role_flatpak: no
-    role_users_groups: no
+    role_users_groups: yes 
     strick_user_groups: no # Remove unspecified general users TODO
     
     
@@ -43,19 +43,19 @@
     # Packages to be combined later
     archive_packages: yes
     codecs_packages: yes
-    customhw_packages: no
+    customhw_packages: yes
     desktop_packages: no
     docker_packages: no
     drawing_packages: no
-    extradevel_packages: no
-    filesystems_packages: no
-    fonts_packages: no
+    extradevel_packages: yes
+    filesystems_packages: yes
+    fonts_packages: yes
     graphviz_packages: no
-    hardware_packages: no
+    hardware_packages: yes
     ifwayland_packages: no
     ifxorg_packages: no
     kde_packages: no
-    language_packages: no
+    language_packages: yes
     libreoffice_packages: no
     multimedia_packages: no
     network_client_packages: no
@@ -81,6 +81,8 @@
       when: is_first_run | bool or role_packages | bool
     - role: flatpak
       when: role_flatpak | bool
+    - role: users
+      when: role_users_groups | bool
 
 # FIX SWAP AND HIBERNATE
 # https://superuser.com/questions/1581885/btrfs-luks-swapfile-how-to-hibernate-on-swapfile
