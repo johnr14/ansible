@@ -110,7 +110,7 @@ packages_base:
     - powertop
     - pv
     - rsync
-    - s3fs_fuse
+    - s3fs-fuse
     - screen
     - sudo
     - sysfsutils

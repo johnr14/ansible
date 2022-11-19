@@ -8,7 +8,7 @@
 ---
 
 - name: Install rpmfusion repositories for Fedora
-  include: rpmfusion.yml
+  include_tasks: rpmfusion.yml
   when:
     - ansible_distribution in [ "Amazon", "Fedora", "CentOS", "RedHat" ]
   tags:

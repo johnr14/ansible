@@ -32,7 +32,8 @@
     strick_user_groups: no # Remove unspecified general users TODO
     
     
-    # Repositories
+    # Repositories 
+    # marking rpmfusion as no will remove it if it was installed
     rpmfusion_nonfree: yes
     rpmfusion_free: yes
 

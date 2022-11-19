@@ -8,7 +8,7 @@
 ---
 
 - name: Install common base packages
-  include: install_base.yml
+  include_tasks: install_base.yml
   tags:
     - install_base
     - packages_install

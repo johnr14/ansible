@@ -9,7 +9,7 @@
 
 ---
 - name: Upgrade system to latest packages
-  include: update.yml
+  include_tasks: update.yml
   tags:
     - upgrade_system
     - always
