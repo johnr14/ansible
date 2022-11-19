@@ -107,9 +107,7 @@ packages_base:
     - mbuffer
     - neofetch
     - net-tools
-    - nistat
     - nmap
-    - ntop
     - openssh-server
     - powertop
     - pv
