@@ -86,6 +86,7 @@ packages_base:
     - expect
     - file
     - findutils
+    - fish
     - fpaste
     - git
     - git-extras
