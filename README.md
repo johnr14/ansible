@@ -36,6 +36,19 @@ List to TODO:
 - Passwords
 - Configure users !!
 
+- Package cleanup
+  - Remove package from autoinstall if it needs a configuration before usage
+
+- Special applications that need to be built
+  - Neovide (build)
+  - Element (flatpak) https://fedoramagazine.org/multiple-matrix-sessions-with-element-on-fedora-linux/
+
+- Application settings
+  - Firefox
+  - KDE
+
+- Dotfiles management
+
 
 - Install VLC and all codecs
 - Install copr 

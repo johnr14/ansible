@@ -27,14 +27,14 @@
 
   vars:
     # If there where changes to 
-    is_first_run: no # run every roles 
+    is_first_run: yes # run every roles 
 
     # Chose which rore to run 
-    role_common: no 
-    role_configure_host: no
-    role_repositories: no
-    role_packages: no
-    role_flatpak: no
+    role_common: yes 
+    role_configure_host: yes
+    role_repositories: yes
+    role_packages: yes
+    role_flatpak: yes
     role_users_groups: yes 
     strick_user_groups: no # Remove unspecified general users TODO
     
