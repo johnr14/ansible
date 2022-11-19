@@ -23,16 +23,16 @@
 
 - name: Add user to groups
   ansible.builtin.user:
-    name: "{{ personal_username }}"
+    name: "{{ local_user }}"
     groups:
-      - "{{ personal_username }}"
+      - "{{ local_user }}"
       - wheel
   tags:
     - always
 
 - name: Remove default folders
   file:
-    path: "/home/{{ personal_username }}/{{ item.path }}"
+    path: "/home/{{ local_user }}/{{ item.path }}"
     state: absent
     with_items:
       - { path: Desktop }
@@ -49,10 +49,10 @@
   file:
     path: "{{ item.path }}"
     state: directory
-    owner: "{{ personal_username }}"
-    group: "{{ personal_username }}"
+    owner: "{{ local_user }}"
+    group: "{{ local_user }}"
     recurse: yes
     with_items:
-      - { path: "/home/{{ personal_username }}/Data" }
+      - { path: "/home/{{ local_user }}/Data" }
   tags:
     - always
