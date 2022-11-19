@@ -110,6 +110,7 @@ packages_base:
     - powertop
     - pv
     - rsync
+    - s3fs_fuse
     - screen
     - sudo
     - sysfsutils
@@ -167,16 +168,19 @@ packages_customhw:
 
 packages_desktop:
   RedHat:
+    - android-file-transfer
     - "@Common NetworkManager Submodules"
     - crda
     - "@firefox"
     - "@fonts"
     - gamemode
+    - gstreamer1-plugin-openh264
     - iw
     - langpacks-core-font-fr
     - langpacks-core-font-fr
     - langpacks-en
     - langpacks-fr
+    - mozilla-openh264
     - NetworkManager-config-connectivity-fedora
     - NetworkManager-wifi
     - pass
@@ -297,6 +301,7 @@ packages_hardware:
 
 packages_ifwayland:
   RedHat:
+    - wev
     - wl-clipboard
 
 packages_ifxorg:
@@ -449,18 +454,17 @@ packages_videoediting:
     - kdenlive
     #- blender
     #- shotcut
-  
 
-
-
-  
-
-  
+packages_virtualization:
+   RedHat:
+    - "@virtualization"  
 
 
 # put packages that have dependencies to rpm fusion here
-#packages_rpmfusion:
-  #RedHat:
+packages_rpmfusion:
+  RedHat:
+    - dfc
+    - tuptime
 
 
 
