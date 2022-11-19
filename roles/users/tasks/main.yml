@@ -6,6 +6,8 @@
     home: /home/{{ local_user }}
     groups: libvirt,wheel
     append: yes
+  tags:
+    - always
 
 - name: Allow wheel group to sudo without a password
   lineinfile:

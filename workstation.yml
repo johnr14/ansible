@@ -23,10 +23,10 @@
     is_first_run: yes # run every roles 
 
     # Chose which rore to run 
-    role_common: yes
+    role_common: no 
     role_configure_host: no
-    role_repositories: yes
-    role_packages: yes
+    role_repositories: no
+    role_packages: no
     role_flatpak: no
     role_users_groups: yes 
     strick_user_groups: no # Remove unspecified general users TODO
