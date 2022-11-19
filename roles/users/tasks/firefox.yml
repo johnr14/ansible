@@ -1,0 +1,65 @@
+- name: Get Firefox default release profile name
+      find:
+        paths: "/home/{{ personal_username }}/.mozilla/firefox/"
+        file_type: directory
+        patterns: '*.default-release'
+      register: firefox_profile
+
+    - name: Custom Firefox settings
+      copy:
+        dest: "{{ firefox_profile | json_query('files[*].path | [0]') | replace ('\"', '') }}/user.js"
+        mode: 0644
+        content: |
+          user_pref("browser.aboutConfig.showWarning", false);
+          user_pref("browser.aboutHomeSnippets.updateUrl", "");
+          user_pref("browser.compactmode.show", true);
+          user_pref("browser.discovery.enabled", false);
+          user_pref("browser.download.useDownloadDir", false);
+          user_pref("browser.fixup.alternate.enabled", false);
+          user_pref("browser.formfill.enable", false);
+          user_pref("browser.formfill.expire_days",	0);
+          user_pref("browser.helperApps.deleteTempFileOnExit", true);
+          user_pref("browser.newtab.preload", false);
+          user_pref("browser.newtab.url", "about:blank");
+          user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr", false);
+          user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false);
+          user_pref("browser.newtabpage.activity-stream.enabled", false);
+          user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
+          user_pref("browser.newtabpage.activity-stream.feeds.snippets", false);
+          user_pref("browser.newtabpage.directory.ping", "");
+          user_pref("browser.newtabpage.directory.source", "data:text/plain,{}");
+          user_pref("browser.newtabpage.enabled", false);
+          user_pref("browser.newtabpage.enhanced", false);
+          user_pref("browser.pocket.enabled", false);
+          user_pref("browser.search.context.loadInBackground", true);
+          user_pref("browser.search.suggest.enabled", false);
+          user_pref("browser.search.update", false);
+          user_pref("browser.startup.homepage", "{{ firefox_start_page }}");
+          user_pref("browser.tabs.loadBookmarksInBackground", true);
+          user_pref("browser.tabs.loadBookmarksInTabs", true);
+          user_pref("browser.uidensity", 1);
+          user_pref("browser.uitour.enabled", false);
+          user_pref("browser.uitour.enabled", false);
+          user_pref("browser.urlbar.autoFill", false);
+          user_pref("browser.urlbar.groupLabels.enabled", false);
+          user_pref("browser.urlbar.trimURLs", false);
+          user_pref("browser.warnOnQuitShortcut", false);
+          user_pref("clipboard.autocopy", false);
+          user_pref("datareporting.healthreport.service.enabled", false);
+          user_pref("datareporting.healthreport.uploadEnabled", false);
+          user_pref("datareporting.policy.dataSubmissionEnabled", false);
+          user_pref("datareporting.policy.dataSubmissionEnabled", false);
+          user_pref("dom.event.contextmenu.enabled", true);
+          user_pref("experiments.enabled", false);
+          user_pref("experiments.manifest.uri", "");
+          user_pref("experiments.supported", false);
+          user_pref("extensions.pocket.enabled", false);
+          user_pref("layout.word_select.eat_space_to_next_word", false);
+          user_pref("mousewheel.min_line_scroll_amount", 25);
+          user_pref("network.allow-experiments", false);
+          user_pref("privacy.trackingprotection.enabled", true);
+          user_pref("privacy.trackingprotection.pbmode.enabled", true);
+          user_pref("signon.rememberSignons", false);
+          user_pref("toolkit.telemetry.archive.enabled", false);
+          user_pref("toolkit.telemetry.enabled", false);
+          user_pref("toolkit.telemetry.unified", false);

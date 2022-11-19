@@ -1,0 +1,11 @@
+
+    - name: Configure Git user and email
+      community.general.git_config:
+        name: "{{ item.name }}"
+        scope: global
+        value: "{{ item.value }}"
+      with_items:
+        - { name: user.name, value: "{{ git_config_user_name }}" }
+        - { name: user.email, value: "{{ git_config_user_email }}" }
+        - { name: init.defaultBranch, value: master }
+      become_user: "{{ personal_username }}"

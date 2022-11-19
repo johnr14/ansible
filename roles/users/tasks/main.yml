@@ -1,0 +1,48 @@
+---
+
+- name: Setup {{ local_user }} user
+  user:
+    name: "{{ local_user }}"
+    home: /home/{{ local_user }}
+    groups: libvirt,wheel
+    append: yes
+
+- name: Allow wheel group to sudo without a password
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%wheel'
+    line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+    validate: visudo -cf %s
+  when: local_user_passwordless_sudo
+
+- name: Add user to groups
+  ansible.builtin.user:
+    name: "{{ personal_username }}"
+    groups:
+      - "{{ personal_username }}"
+      - wheel
+      
+    
+- name: Remove default folders
+  file:
+    path: "/home/{{ personal_username }}/{{ item.path }}"
+    state: absent
+    with_items:
+      - { path: Desktop }
+      - { path: Documents }
+      - { path: Music }
+      - { path: Pictures }
+      - { path: Public }
+      - { path: Templates }
+      - { path: Videos }
+    
+- name: Create home directories
+  file:
+    path: "{{ item.path }}"
+      state: directory
+      owner: "{{ personal_username }}"
+      group: "{{ personal_username }}"
+      recurse: yes
+      with_items:
+        - { path: "/home/{{ personal_username }}/Data" }
