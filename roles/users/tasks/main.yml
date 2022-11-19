@@ -1,10 +1,11 @@
 ---
 
+
 - name: Setup {{ local_user }} user
   user:
     name: "{{ local_user }}"
     home: /home/{{ local_user }}
-    groups: libvirt,wheel
+    groups: wheel
     append: yes
   tags:
     - always
@@ -17,6 +18,8 @@
     line: '%wheel ALL=(ALL) NOPASSWD: ALL'
     validate: visudo -cf %s
   when: local_user_passwordless_sudo
+  tags:
+    - always
 
 - name: Add user to groups
   ansible.builtin.user:
@@ -24,6 +27,8 @@
     groups:
       - "{{ personal_username }}"
       - wheel
+  tags:
+    - always
 
 - name: Remove default folders
   file:
@@ -37,6 +42,8 @@
       - { path: Public }
       - { path: Templates }
       - { path: Videos }
+  tags:
+    - always
     
 - name: Create home directories
   file:
@@ -47,3 +54,5 @@
     recurse: yes
     with_items:
       - { path: "/home/{{ personal_username }}/Data" }
+  tags:
+    - always
