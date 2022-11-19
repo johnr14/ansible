@@ -1,0 +1,5 @@
+---
+
+
+- name: cleaning task for dnf
+  command: /usr/bin/dnf clean all

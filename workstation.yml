@@ -32,7 +32,7 @@
     role_flatpak: yes
     role_users_groups: yes 
     strick_user_groups: no # Remove unspecified general users TODO
-    
+    role_dnfclean: yes
     
     # Repositories 
     # marking rpmfusion as no will remove it if it was installed
@@ -85,6 +85,8 @@
       when: role_flatpak | bool
     - role: users
       when: role_users_groups | bool
+    - role: dnfclean
+      when: role_dnfclean | bool
 
 # FIX SWAP AND HIBERNATE
 # https://superuser.com/questions/1581885/btrfs-luks-swapfile-how-to-hibernate-on-swapfile
