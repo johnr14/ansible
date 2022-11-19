@@ -41,7 +41,7 @@
   become: yes
   register: dnf_codecs_result
   when:
-    - codecs_packages | bool
+    - codecs_packages | bool and rpmfusion_nonfree | bool
   tags:
     - always
     - install_codecs_packages
