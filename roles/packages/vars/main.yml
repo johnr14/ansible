@@ -185,6 +185,8 @@ packages_desktop:
     
 packages_dev:
   RedHat:
+    - "@Developement Tools"
+    - "@Devemopement Libraries"
     - bc
     - binutils
     - bison
@@ -202,8 +204,8 @@ packages_dev:
     - openssl-devel
     - perl
     - rust
-    #- rpm-build
-    #- rpmdevtools  
+    - rpm-build
+    - rpmdevtools  
 
               
 package_docker:
@@ -289,7 +291,8 @@ packages_hardware:
     - hddtemp
     - ipmitool
     - lm_sensors
-    - smartmontools   
+    - smartmontools
+    - powertop   
 
 packages_ifwayland:
   RedHat:
@@ -406,7 +409,6 @@ packages_multimedia:
     - vlc
     - vlc-extras
     - xnconvert
-
     
 packages_network_client:
   RedHat:
@@ -428,7 +430,6 @@ packages_remote:
     #- kdenetwork-krdc
     #- tigervnc
 
-
 packages_scan:
   RedHat:
     - gscan2pdf
@@ -446,7 +447,7 @@ packages_videoediting:
   RedHat:
     - kdenlive
     #- blender
-    - shotcut
+    #- shotcut
   
 
 
