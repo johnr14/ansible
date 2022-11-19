@@ -10,6 +10,7 @@
 # tasks file for rpmfusion
 - name: Include rpmfusion vars
   include_vars: vars/rpmfusion.yml
+  tags: install_rpmfusion
   
 # If the repo has already been removed,
 # then attempting to operate on it will fail
@@ -17,11 +18,13 @@
   stat:
     path: /etc/yum.repos.d/rpmfusion-free.repo
   register: repo_file_free
+  tags: install_rpmfusion
   
 - name: Check for RPM Fusion nonfree repo
   stat:
     path: /etc/yum.repos.d/rpmfusion-free.repo
   register: repo_file_nonfree
+  tags: install_rpmfusion
     
 - name: Install rpmfusion repositories
   block:
@@ -141,4 +144,4 @@
     - ansible_distribution in [ "Amazon", "Fedora", "CentOS", "RedHat" ]
     - repo_file_free.stat.exists == False or repo_file_nonfree.stat.exists == True
   tags:
-    - install_rpmfusion
+    - uninstall_rpmfusion

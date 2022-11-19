@@ -14,4 +14,16 @@
   tags:
     - repositories
     - always
-    - rpmfusion
+    - install_rpmfusion
+
+#TODO UNINSTALL
+- name: Uninstall rpmfusion repositories for Fedora
+  include_tasks: rpmfusion.yml
+  when:
+    - ansible_distribution in [ "Amazon", "Fedora", "CentOS", "RedHat" ] and rpmfusion_free | bool == False
+    - 
+  tags:
+    - repositories
+    - always
+    - uninstall_rpmfusion
+
