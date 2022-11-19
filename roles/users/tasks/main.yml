@@ -22,8 +22,7 @@
     groups:
       - "{{ personal_username }}"
       - wheel
-      
-    
+
 - name: Remove default folders
   file:
     path: "/home/{{ personal_username }}/{{ item.path }}"
