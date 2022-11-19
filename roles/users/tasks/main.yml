@@ -40,9 +40,9 @@
 - name: Create home directories
   file:
     path: "{{ item.path }}"
-      state: directory
-      owner: "{{ personal_username }}"
-      group: "{{ personal_username }}"
-      recurse: yes
-      with_items:
-        - { path: "/home/{{ personal_username }}/Data" }
+    state: directory
+    owner: "{{ personal_username }}"
+    group: "{{ personal_username }}"
+    recurse: yes
+    with_items:
+      - { path: "/home/{{ personal_username }}/Data" }
