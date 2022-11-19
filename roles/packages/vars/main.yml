@@ -117,6 +117,7 @@ packages_base:
     - toolbox
     - traceroute
     - vim-enhanced
+    - wireguard-tools
     - wget
     - which
     - whois
@@ -160,9 +161,8 @@ packages_codecs:
 
 packages_customhw:
   RedHat:
-    thrdwks:
-      - apcupsd
-      - dymo-cups-drivers
+    - apcupsd
+    - dymo-cups-drivers
 
 packages_desktop:
   RedHat:
@@ -425,7 +425,7 @@ packages_publishing:
 packages_remote:
   RedHat:
     - xpra
-    - wireguard-tools
+    #- wireguard-tools
     - tigervnc
     #- kdenetwork-krdc
     #- tigervnc
