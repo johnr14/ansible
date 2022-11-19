@@ -32,29 +32,29 @@
 
 
 ## FIXME
-- name: Remove default folders
-  file:
-    path: "/home/{{ local_user }}/{{ item.path }}"
-    state: absent
-    with_items:
-      - { path: Desktop }
-      - { path: Documents }
-      - { path: Music }
-      - { path: Pictures }
-      - { path: Public }
-      - { path: Templates }
-      - { path: Videos }
+#- name: Remove default folders
+#  file:
+#    path: "/home/{{ local_user }}/{{ item.path }}"
+#    state: absent
+#    with_items:
+#      - { path: Desktop }
+#      - { path: Documents }
+#      - { path: Music }
+#      - { path: Pictures }
+#      - { path: Public }
+#      - { path: Templates }
+#      - { path: Videos }
   #tags:
   #  - always
     
-- name: Create home directories
-  file:
-    path: "{{ item.path }}"
-    state: directory
-    owner: "{{ local_user }}"
-    group: "{{ local_user }}"
-    recurse: yes
-    with_items:
-      - { path: "/home/{{ local_user }}/Data" }
+#- name: Create home directories
+#  file:
+#    path: "{{ item.path }}"
+#    state: directory
+#    owner: "{{ local_user }}"
+#    group: "{{ local_user }}"
+#    recurse: yes
+#    with_items:
+#      - { path: "/home/{{ local_user }}/Data" }
 #  tags:
 #    - always
