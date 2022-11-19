@@ -35,6 +35,8 @@ Tasks lists and summary:
 List to TODO:
 - Passwords
 - Configure users !!
+
+
 - Install VLC and all codecs
 - Install copr 
 - Cleanup after packages install

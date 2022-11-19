@@ -19,7 +19,9 @@
       install_weak_deps=false
       max_parallel_downloads={{ ansible_processor_vcpus }}
   become: yes
-
+  tags:
+    - first_run
+    - always
 
 - name: Upgrade system to latest packages
   include_tasks: update.yml

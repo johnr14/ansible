@@ -20,7 +20,7 @@
 
   vars:
     # If there where changes to 
-    is_first_run: yes # run every roles 
+    is_first_run: no # run every roles 
 
     # Chose which rore to run 
     role_common: no 
