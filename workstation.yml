@@ -15,7 +15,7 @@
   become: true
   serial: 1
 
-  var_files:
+  vars_files:
     - vars/vars.yml
 
   vars:
