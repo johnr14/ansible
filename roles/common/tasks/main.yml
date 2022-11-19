@@ -8,6 +8,19 @@
 ###############################################################################
 
 ---
+
+- name: Improve DNF Performances
+  blockinfile:
+    path: /etc/dnf/dnf.conf
+    create: yes
+    block: |
+      deltarpm=true
+      fastestmirror=true
+      install_weak_deps=false
+      max_parallel_downloads={{ ansible_processor_vcpus }}
+  become: yes
+
+
 - name: Upgrade system to latest packages
   include_tasks: update.yml
   tags:
