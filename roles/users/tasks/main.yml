@@ -30,6 +30,8 @@
   tags:
     - always
 
+
+## FIXME
 - name: Remove default folders
   file:
     path: "/home/{{ local_user }}/{{ item.path }}"
@@ -42,8 +44,8 @@
       - { path: Public }
       - { path: Templates }
       - { path: Videos }
-  tags:
-    - always
+  #tags:
+  #  - always
     
 - name: Create home directories
   file:
@@ -54,5 +56,5 @@
     recurse: yes
     with_items:
       - { path: "/home/{{ local_user }}/Data" }
-  tags:
-    - always
+#  tags:
+#    - always
